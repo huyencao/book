@@ -21,7 +21,6 @@ class CreateProductsTable extends Migration
             $table->integer('price_old');
             $table->integer('sale')->nullable();
             $table->integer('price_new')->nullable();
-            $table->string('author');
             $table->string('publishing_company');
             $table->integer('number_page')->nullable();
             $table->integer('total')->nullable();

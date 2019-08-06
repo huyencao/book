@@ -1,13 +1,14 @@
 @extends('backend.index')
 
-@section('title', 'Add News Book')
+@section('title', 'Add product book')
 
 @section('content')
     <div class="row">
-        <form action="{{ route('news.store') }}" method='POST' enctype="multipart/form-data" autocomplete="off">
+        <form action="{{ route('product.store') }}" method='POST' enctype="multipart/form-data" autocomplete="off">
             <div class="col-sm-12">
                 @include('backend.block.error')
             </div>
+            {{ csrf_field() }}
             <div class="col-md-8">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                 <div class="form-group">
@@ -50,13 +51,16 @@
                     <label>Trạng thái</label>
                     <select name="status" class="form-control">
                         <option value="">Chọn trạng thái</option>
-
+                        <option value="1">Mở</option>
+                        <option value="0">Đóng</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Sản phẩm nổi bật</label>
                     <select name="hot" class="form-control">
                         <option value="">Chọn</option>
+                        <option value="1">Có</option>
+                        <option value="0">Không</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -66,26 +70,6 @@
                         @foreach($cate_product as $item)
                             <option value="{{ $item->id }}">{{ $item->title }}</option>
                         @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Tác giả</label>
-                    <input type="text" class="form-control" name="author">
-                </div>
-                <div class="form-group">
-                    <label>Trạng thái</label>
-                    <select name="status" class="form-control">
-                        <option value="">Chọn trạng thái</option>
-                        <option value="1">Đã đăng</option>
-                        <option value="2">Đóng</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Bài viết nổi bật</label>
-                    <select name="hot" class="form-control">
-                        <option value="#">Chọn</option>
-                        <option value="1">Có</option>
-                        <option value="2">Không</option>
                     </select>
                 </div>
                 <div class="box-footer">

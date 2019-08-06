@@ -105,8 +105,8 @@ class CateNewsController extends Controller
     public function update(CateNewsEditRequest $request, $id)
     {
         if (Auth::check()) {
-            $user = Auth::user();
-        }
+        $user = Auth::user();
+    }
         $request->merge(
             [
                 'user_id' => $user->id

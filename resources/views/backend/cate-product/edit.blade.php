@@ -1,26 +1,16 @@
 @extends('backend.index')
 
-@section('title', 'Edit category product')
+@section('title', 'Add category product')
 
 @section('content')
     <div id="main-content-wp" class="add-cat-page">
         <div class="section" id="title-page">
             <div class="clearfix">
                 <a href="{{ route('cate-product.create') }}" title="" id="add-new" class="fl-left">Thêm mới</a>
-                <h3 id="index" class="fl-left">Sửa danh mục</h3>
+                <h3 id="index" class="fl-left">Thêm mới danh mục</h3>
             </div>
         </div>
         <div class="wrap clearfix">
-            <div id="sidebar" class="fl-left">
-                <ul id="list-cat">
-                    <li>
-                        <a href="" title="">Danh sách bài viết</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('cate-product.index') }}" title="">Danh mục bài viết</a>
-                    </li>
-                </ul>
-            </div>
             <div id="content" class="fl-right">
                 <div class="section" id="detail-page">
                     <div class="section-detail">

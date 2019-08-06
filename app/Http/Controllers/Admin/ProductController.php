@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\ProductRepository;
 use App\Repositories\CateProductRepository;
-use App\Http\Requests\ProductRequest;
 use Auth;
 use Hash;
 use File;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -41,7 +41,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $cate_product = $this->cate_product->listCateProductAdmin();
+        $cate_product = $this->cate_product->listCateProduct();
 
         return view('backend.product.add', compact('cate_product'));
     }
@@ -52,9 +52,28 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+        if (!empty($request->file('fImage'))) {
+            $file_name = $request->file('fImage')->getClientOriginalName();
+            $image = 'uploads/product/' . time() . '-' . $file_name;
+            $request->file('fImage')->move('uploads/news/', $image);
+        }
+
+        $request->merge(
+            [
+                'user_id' => $user->id,
+                'slug' => str_slug($request->name),
+                'thumbnail' => $image
+            ]
+        );
+
+        $this->product->create($request->all());
+
+        return redirect(route('product.index'));
     }
 
     /**

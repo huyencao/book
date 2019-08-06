@@ -24,8 +24,8 @@ class CateProductRequest extends FormRequest
     public function rules()
     {
         return [
-                'title' => 'required|unique:category_product|max:191',
-                'status' =>'required',
+            'title' => 'required|unique:category_product|max:191',
+            'status' =>'required',
         ];
     }
 

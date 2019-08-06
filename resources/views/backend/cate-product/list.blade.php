@@ -23,7 +23,7 @@
                                 <td><span class="thead-text">Trạng thái</span></td>
                                 <td><span class="thead-text">Người tạo</span></td>
                                 <td><span class="thead-text">Thời gian</span></td>
-                                <td><span class="thead-text">Hành động</span></td>
+                                <td><span class="thead-text">Hành động</span></td
                             </tr>
                             </thead>
                             <tbody>
@@ -34,16 +34,17 @@
                                         <td><span class="tbody-text">{{ ++$key }}</span>
                                         <td class="clearfix">
                                             <div class="tb-title fl-left">
-                                                <a href="{{ !empty($value->slug) == true ? $value->slug : null }}" title="">{{ !empty($value->title) == true ? $value->title : null }}</a>
+                                                <a href="{{ $value->slug }}" title="">{{ $value->title }}</a>
                                             </div>
                                         </td>
                                         <td>
                                             <span class="tbody-text"></span>@if ($value->status == 1) {{ __('Đã đăng') }} @else {{ __('Đóng') }} @endif
                                         </td>
-                                        <td><span class="tbody-text">{{ empty($value->user->name) == true ? null : $value->user->name }}</span></td>
+                                        <td><span class="tbody-text">{{ $value->user->name }}</span></td>
                                         <td>
                                             <span class="tbody-text">{{ date('d-m-Y', strtotime($value->updated_at)) }}</span>
                                         </td>
+                                        <td>
                                         <td>
                                             <a href="{{ route('cate-product.edit', $value->id ) }}">
                                                 <i class="fa fa-pencil fa-fw"></i> Sửa
@@ -52,6 +53,7 @@
                                                data-toggle="modal" data-target="#confim">
                                                 <i class="fa fa-trash-o fa-fw"></i> Xóa
                                             </a>
+                                        </td>
                                         </td>
                                     </tr>
                                 @endforeach

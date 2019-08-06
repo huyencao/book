@@ -60,7 +60,7 @@ class NewsController extends Controller
         }
         if (!empty($request->file('fImage'))) {
             $file_name = $request->file('fImage')->getClientOriginalName();
-            $image = 'uploads/user/' . time() . '-' . $file_name;
+            $image = 'uploads/news/' . time() . '-' . $file_name;
             $request->file('fImage')->move('uploads/news/', $image);
         }
 

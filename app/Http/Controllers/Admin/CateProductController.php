@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CateProductRequest;
-use App\Http\Requests\EditCateProductRequest;
 use App\Repositories\CateProductRepository;
+use App\Http\Requests\CateProductRequest;
+use App\Http\Requests\CateProductEditRequest;
 use Auth;
 
 class CateProductController extends Controller
@@ -25,7 +25,7 @@ class CateProductController extends Controller
      */
     public function index()
     {
-        $cate_product = $this->cate_product->listCateProductAdmin();
+        $cate_product = $this->cate_product->listCateProduct();
 
         return view('backend.cate-product.list', compact('cate_product'));
     }
@@ -45,7 +45,7 @@ class CateProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CateProductRequest $request)
@@ -67,7 +67,7 @@ class CateProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -78,7 +78,7 @@ class CateProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -87,21 +87,22 @@ class CateProductController extends Controller
             $category_product = $this->cate_product->findCate($id);
             $cate_parent = $this->cate_product->listCateParent();
 
-            return view('backend.cate-product.edit', compact('category_product', 'cate_parent'));
+            return view('backend.cate-product.edit', compact('category_product','cate_parent'));
 
         } catch (ModelNotFoundException $ex) {
             return $ex->getMessage();
         }
+        return view('backend.cate-product.edit', compact('cate_parent'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditCateProductRequest $request, $id)
+    public function update(CateProductEditRequest $request, $id)
     {
         if (Auth::check()) {
             $user = Auth::user();
@@ -112,24 +113,25 @@ class CateProductController extends Controller
             ]
         );
 
-        return redirect(route('cate-product.index'));
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
         try {
-            $this->cate_product->delete($id);
+            $this->cate_product->update($id, $request->all());
 
             return redirect(route('cate-product.index'));
         } catch (ModelNotFoundException $ex) {
             return $ex->getMessage();
         }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $this->cate_product->delete($id);
+
+        return redirect()->route('cate-product.index');
     }
 }

@@ -8,7 +8,7 @@ class CateProductRepository extends EloquentRepository
 {
     public function model()
     {
-        return \App\Models\CategoryNews::class;
+        return \App\Models\CategoryProduct::class;
     }
 
     public function listCateProduct()
@@ -18,19 +18,12 @@ class CateProductRepository extends EloquentRepository
         return $data;
     }
 
-    public function listCateProductAdmin()
-    {
-        $data = CategoryProduct::with('user')->get();
-
-        return $data;
-    }
     public function listCateParent()
     {
         $data = CategoryProduct::where('parent_id', 0)->get();
 
         return $data;
     }
-
 
     public function findCate($id)
     {

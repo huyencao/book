@@ -19,9 +19,8 @@
                                 @include('backend.block.error')
                             </div>
                             {{ csrf_field() }}
-                            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                             <label for="title">Tiêu đề</label>
-                            <input type="text" name="title" id="title" class="form-control">
+                            <input type="text" name="title" id="title">
                             <label>Danh mục cha</label>
                             <select name="parent_id">
                                 <option value="">-- Chọn danh mục --</option>
