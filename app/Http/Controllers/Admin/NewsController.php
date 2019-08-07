@@ -160,7 +160,7 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        $news = $this->list_news->findProduct($id);
+        $news = $this->list_news->findNews($id);
         if (isset($news)) {
             $image = $news->thumbnail;
             if(File::exists($image)){

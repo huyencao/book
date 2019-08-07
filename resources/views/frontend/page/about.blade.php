@@ -19,7 +19,7 @@
 						<h1>Giới thiệu</h1>
 					</div>
 					<div class="info-about">
-						<p>{!! $setting[0]->description !!}</p>
+						<p>{!! isset($setting->description) ? $setting->description : '' !!}</p>
 					</div>
 				</div>
 			</div>

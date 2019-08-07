@@ -17,28 +17,7 @@
       <div class="tab-content">
          <div class="tab-pane active" id="activity">
             <div class="row">
-               <div class="col-lg-2">
-                  <div class="form-group">
-                     <label>Logo</label><br>
-                     @if (!empty($site_info->site_logo))
-                        <img src="{{ asset($site_info->site_logo) }}"
-                             class="img-thumbnail" width="50%" style="display: block; margin-bottom: 10px">
-                     @endif
-                     <div class="file-loading">
-                        <input id="inpImg" name="fImage" type="file">
-                     </div>
-                  </div>
-                  <div class="form-group">
-                     <label>Favicon</label><br>
-                     @if (!empty($site_info->site_favicon))
-                        <img src="{{ asset($site_info->site_favicon) }}"
-                             class="img-thumbnail" width="50%" style="display: block; margin-bottom: 10px">
-                     @endif                     <div class="file-loading">
-                        <input id="inpImg3" name="fFavicon" type="file" value="">
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-6">
+               <div class="col-lg-8">
                   <div class="form-group">
                      <label>Tên Website</label>
                      <input type="text" class="form-control" name="site_title" id="site_title" value="{{ isset($site_info->site_name) ? $site_info->site_name : '' }}" disabled="disabled"
@@ -74,6 +53,25 @@
                   </div>
                </div>
                <div class="col-lg-4">
+                  <div class="form-group">
+                     <label>Logo</label><br>
+                     @if (!empty($site_info->site_logo))
+                        <img src="{{ asset($site_info->site_logo) }}"
+                             class="img-thumbnail" width="50%" style="display: block; margin-bottom: 10px">
+                     @endif
+                     <div class="file-loading">
+                        <input id="inpImg" name="fImage" type="file">
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label>Favicon</label><br>
+                     @if (!empty($site_info->site_favicon))
+                        <img src="{{ asset($site_info->site_favicon) }}"
+                             class="img-thumbnail" width="50%" style="display: block; margin-bottom: 10px">
+                     @endif                     <div class="file-loading">
+                        <input id="inpImg3" name="fFavicon" type="file" value="">
+                     </div>
+                  </div>
                   <div class="form-group">
                      <label>Google Analytics</label>
                      <textarea  class="form-control" name="google_analytics" id="site_google_analytics" rows="6">{{ isset($site_info->site_google_analytics) ? $site_info->site_google_analytics : '' }}</textarea>

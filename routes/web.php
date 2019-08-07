@@ -40,7 +40,8 @@ Route::group(['namespace' => 'Admin'], function() {
 Route::namespace('Frontend')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('about', 'AboutController@index')->name('about');
-    Route::get('contact', 'ContactController@index')->name('contact');
+//    Route::get('contact', 'ContactController@index')->name('contact');
+    Route::resource('contact', 'ContactController');
     Route::get('news', 'NewsController@index')->name('news');
     Route::get('news-detail/{slug}', 'NewsController@detail')->name('news.detail');
     Route::get('product', 'ProductController@index')->name('product');

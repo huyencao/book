@@ -8,11 +8,11 @@
                         <div class="info">
                             <div class="item-info">
                                 <span>Địa chỉ</span>
-                                <p>{{ $setting[0]->address }}</p>
+                                <p>{{ isset($setting->site_address) ? $setting->site_address : ''}}</p>
                             </div>
                             <div class="item-info">
                                 <span>Hotline</span>
-                                <p><a href="">{{ $setting[0]->hotline }} - <span>{{ $setting[0]->email }}</span></a></p>
+                                <p><a href="">{{ isset($setting->site_hotline) ? $setting->site_hotline : ''}} - <span>{{ isset($setting->site_email) ? $setting->site_email : '' }}</span></a></p>
                             </div>
                         </div>
                     </div>
@@ -33,8 +33,7 @@
                     <div class="item">
                         <div class="title-footer"><span>Liên hệ với chúng tôi</span></div>
                         <div class="fanpages">
-                            <iframe
-                                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fgco.vn%2F&tabs&width=360&height=140&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId"
+                            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fgco.vn%2F&tabs&width=360&height=140&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId"
                                 width="360" height="140" style="border:none;overflow:hidden" scrolling="no"
                                 frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                         </div>
@@ -45,7 +44,7 @@
         <div class="reserved">
             <div class="row">
                 <div class="col-md-6">
-                    <span>© -- GCO books. All rights reserved</span>
+                    <span>{{ isset($setting->site_coppyright) ? $setting->site_coppyright : '' }}</span>
                 </div>
                 <div class="col-md-6">
                     <span class="pull-right">Design by GCO GROUP</span>

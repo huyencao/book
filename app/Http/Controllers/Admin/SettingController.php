@@ -25,10 +25,8 @@ class SettingController extends Controller
      */
     public function index()
     {
-//        $site_info = $this->setting->settingSelect();
         $site_info = $this->setting->infoSetting();
 
-//        dd($site_info);
         return view('backend.setting.list', compact('site_info'));
     }
 
@@ -72,7 +70,6 @@ class SettingController extends Controller
             ]
         );
 
-//        dd($request->all());
         $this->setting->create($request->all());
 
         return redirect(route('setting.index'));

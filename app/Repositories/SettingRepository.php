@@ -12,7 +12,7 @@ class SettingRepository extends EloquentRepository
 
     public function settingSelect()
     {
-        $setting = Setting::with('user')->get();
+        $setting = Setting::with('user')->limit(1)->get();
 
         return $setting;
     }

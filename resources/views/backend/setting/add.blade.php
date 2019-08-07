@@ -16,21 +16,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="activity">
                     <div class="row">
-                        <div class="col-lg-2">
-                            <div class="form-group">
-                                <label>Logo</label><br>
-                                <div class="file-loading">
-                                    <input id="inpImg" name="fImage" type="file">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Favicon</label><br>
-                                <div class="file-loading">
-                                    <input id="inpImg3" name="fFavicon" type="file" value="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-8">
                             <div class="form-group">
                                 <label>Tên Website</label>
                                 <input type="text" class="form-control" name="site_title" id="site_title" value=""
@@ -67,6 +53,18 @@
                             </div>
                         </div>
                         <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Logo</label><br>
+                                <div class="file-loading">
+                                    <input id="inpImg" name="fImage" type="file">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Favicon</label><br>
+                                <div class="file-loading">
+                                    <input id="inpImg3" name="fFavicon" type="file" value="">
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label>Mô tả ngắn</label>
                                 <textarea class="form-control" name="site_description" id="meta_description"

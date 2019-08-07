@@ -2,15 +2,16 @@
     <div class="header-menu">
         <div class="container">
             <div class="row">
+{{--                {!! dd($setting->site_logo) !!}--}}
                 <div class="col-md-2">
-                    <div class="logo"><a href="/"><img src="{{ asset('frontend/images/logo.png') }}" class="img-fluid" alt=""></a>
+                    <div class="logo"><a href="/"><img src="{!! isset($setting->site_logo) ? $setting->site_logo : '' !!}" class="img-fluid" alt=""></a>
                     </div>
                 </div>
                 <div class="col-md-10">
                     <div class="right">
                         {!! $menus !!}
                         <div class="shopping_cart">
-                            <div class="phone"><a href="javascript:0"><i class="fa fa-phone"></i>{{ $setting[0]->phone }}</a>
+                            <div class="phone"><a href="javascript:0"><i class="fa fa-phone"></i>{{ isset($setting->site_phone) ? $setting->site_phone : '' }}</a>
                             </div>
                             <div class="cart">
                                         <a href="cart.html"><img src="{{ asset('frontend/images/cart.png') }}" class="img-fluid"

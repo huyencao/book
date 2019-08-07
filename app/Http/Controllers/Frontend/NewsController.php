@@ -18,6 +18,7 @@ class NewsController extends Controller
      public function index()
     {
         $list_news = $this->news->listNews();
+
         return view('frontend.news.index', compact('list_news'));
     }
 

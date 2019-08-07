@@ -24,6 +24,6 @@ class SettingComposer
     */
     public function compose(View $view)
     {
-        $view->with('setting', $this->setting->settingSelect());
+        $view->with('setting', $this->setting->infoSetting());
     }
 }

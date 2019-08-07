@@ -38,7 +38,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <span class="tbody-text"><?php convertStatus($value->status);?></span>
+                                            <span class="tbody-text">{{ convertStatus($value->status) }}</span>
                                         </td>
                                         <td><span class="tbody-text">{{ isset($value->user->name) ? $value->user->name : '' }}</span></td>
                                         <td>

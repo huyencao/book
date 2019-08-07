@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="content">
                     <ul class="list-inline">
-                        <li class="list-inline-item"><a href="">Trang chủ</a></li>
+                        <li class="list-inline-item"><a href="/book">Trang chủ</a></li>
                         <li class="list-inline-item"><span>Tin tức</span></li>
                     </ul>
                 </div>
@@ -24,14 +24,14 @@
                                 @foreach ($list_news as $news)
                                     <li>
                                         <div class="item">
-                                            <div class="avarta"><a href="/news-detail/{{ $news->slug }}"><img
-                                                        src="{{ asset('frontend/images/new-hot.png') }}"
+                                            <div class="avarta"><a href="/news-detail/{{ empty($news->slug ) == true ? '' : $news->slug }}"><img
+                                                        src="{{ empty($news->thumbnail ) == true ? '' : $news->thumbnail }}"
                                                         class="img-fluid"
                                                         alt=""></a></div>
                                             <div class="info">
                                                 <div class="date">
                                                     <span>{{ date('d-m-Y', strtotime($news->updated_at)) }}</span></div>
-                                                <h3><a href="/news-detail/{{ $news->slug }}">{{ $news->title  }}</a></h3>
+                                                <h3><a href="/news-detail/{{ empty($news->slug ) == true ? '' : $news->slug }}">{{ empty($news->title ) == true ? '' : $news->title }}</a></h3>
                                             </div>
                                         </div>
                                     </li>

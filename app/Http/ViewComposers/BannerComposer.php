@@ -24,6 +24,7 @@ class BannerComposer
      */
     public function compose(View $view)
     {
+//        dd($this->banner->listBannerActive());
         $view->with('banner', $this->banner->listBannerActive());
     }
 }

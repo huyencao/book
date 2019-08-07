@@ -4,11 +4,11 @@
     <main>
         <section id="banner">
             <div class="avarta">
-                @if (!empty($banner->thumbnail))
-                    <img src="{{ asset($banner->thumbnail) }}"
+                @if (!empty($banner[0]->thumbnail))
+                    <img src="{{ asset($banner[0]->thumbnail) }}"
                          class="img-fluid" width="100%" style="display: block; margin-bottom: 10px">
                 @endif
-			</div>
+            </div>
 
             <div class="caption">
                 <div class="container">
@@ -33,9 +33,8 @@
                             @foreach ($products as $product)
                                 <div class="col-md-3 col-6 col-sm-6">
                                     <div class="item">
-                                        <div class="avarta"><a href="/product-detail/{{ $product->slug }}"><img
-                                                        src="{{ asset('frontend/images/sp1.png') }}" class="img-fluid"
-                                                        alt=""></a></div>
+                                        <div class="avarta"><a href="/product-detail/{{ $product->slug }}">
+                                                <img src="{{ !empty($product->thumbnail) ? $product->thumbnail : '' }}" class="img-fluid" alt=""></a></div>
                                         <div class="info">
                                             <div class="vote">
                                                 <i class="fa fa-star"></i>
@@ -44,7 +43,8 @@
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star-o"></i>
                                             </div>
-                                            <h3><a href="/product-detail/{{ $product->slug }}">{{ $product->name }}</a>
+                                            <h3>
+                                                <a href="/product-detail/{{ empty($product->slug) == true ? '' : $product->slug }}">{{ empty($product->name) == true ? '' : $product->name }}</a>
                                             </h3>
                                             <div class="price">{{ number_format($product->price_old, 0, '.', '.') }}
                                                 <span>đ</span></div>
@@ -66,13 +66,13 @@
                             @foreach ($news as $item)
                                 <li>
                                     <div class="item">
-                                        <div class="avarta"><a href="/news-detail/{{ $item->slug }}"><img
-                                                        src="{{ asset('frontend/images/new-hot.png') }}"
+                                        <div class="avarta"><a href="/news-detail/{{ empty($item->slug) ? '' : $item->slug }}">
+                                                <img src="{{ !empty($item->thumbnail) ? $item->thumbnail : '' }}"
                                                         class="img-fluid" alt=""></a></div>
                                         <div class="info">
                                             <div class="date">
                                                 <span>{{ date('d-m-Y', strtotime($item->updated_at)) }}</span></div>
-                                            <h3><a href="/news-detail/{{ $item->slug }}">{{ $item->title }}</a></h3>
+                                            <h3><a href="/news-detail/{{ empty($item->slug) ? '' : $item->slug }}">{{ empty($item->title) ? '' : $item->title }}</a></h3>
                                         </div>
                                     </div>
                                 </li>

@@ -17,7 +17,7 @@
                 <div class="content">
                     <div class="title-info-cate">
                         @foreach ($data as $item)
-                            <h1>{{ $item->title }}</h1>
+                            <h1>{{ empty($item->title) == true ? '' : $item->title }}</h1>
                             <div class="date">
                                 <span>{{ date('d-m-Y', strtotime($item->updated_at)) }}</span>
                             </div>
