@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\MenuRepository;
 use App\Http\Requests\MenuRequest;
+use App\Http\Requests\EditMenuRequest;
+use Auth;
+use File;
 
 class MenuController extends Controller
 {
@@ -24,7 +27,9 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return view('backend.menu.view');
+        $list_menu = $this->menus->listMenuAll();
+
+        return view('backend.menu.list', compact('list_menu'));
     }
 
     /**
@@ -34,7 +39,9 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('backend.menu.create');
+        $menu_parent = $this->menus->listMenuParent();
+
+        return view('backend.menu.add', compact('menu_parent'));
     }
 
     /**
@@ -45,7 +52,20 @@ class MenuController extends Controller
      */
     public function store(MenuRequest $request)
     {
-        dd($request->all());
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+
+        $request->merge(
+            [
+                'user_id' => $user->id,
+                'slug' => str_slug($request->name),
+            ]
+        );
+
+        $this->menus->create($request->all());
+
+        return redirect(route('menu.index'));
     }
 
     /**
@@ -67,7 +87,10 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $menu = $this->menus->findMenu($id);
+        $menu_parent = $this->menus->listMenuParent();
+
+        return view('backend.menu.edit', compact('menu', 'menu_parent'));
     }
 
     /**
@@ -77,9 +100,25 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditMenuRequest $request, $id)
     {
-        //
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+
+        $request->merge(
+            [
+                'user_id' => $user->id,
+                'slug' => str_slug($request->title),
+            ]
+        );
+
+        $this->menus->update($id, $request->all());
+
+        return redirect()->route('menu.index')->with([
+            'flash_level' => 'success',
+            'flash_message' => 'Cập nhật thành công !'
+        ]);
     }
 
     /**
@@ -90,6 +129,11 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->menus->delete($id);
+
+        return back()->with([
+            'flash_level' => 'success',
+            'flash_message' => 'Xóa thành công !'
+        ]);
     }
 }

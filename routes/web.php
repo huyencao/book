@@ -33,6 +33,7 @@ Route::group(['namespace' => 'Admin'], function() {
         Route::resource('news', 'NewsController');
         Route::resource('cate-product', 'CateProductController');
         Route::resource('product', 'ProductController');
+        Route::resource('banner', 'BannerController');
     });
 });
 

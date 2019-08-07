@@ -31,6 +31,7 @@ class ProductRequest extends FormRequest
             'number_page' => 'required',
             'total' => 'required',
             'detail' => 'required',
+            'fImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 
@@ -45,6 +46,9 @@ class ProductRequest extends FormRequest
             'number_page.required' => 'Bạn chưa nhập số trang',
             'total.required' => 'Bạn chưa nhập số quyển sách',
             'detail.required' => 'Bạn chưa nhập thông tin sản phẩm',
+            'fImage.required' => 'Bạn chưa chọn ảnh sản phẩm',
+            'fImage.mimes' => 'Ảnh không đúng định dạng',
+            'fImage.max' => 'Kích thước ảnh quá lớn'
         ];
     }
 }

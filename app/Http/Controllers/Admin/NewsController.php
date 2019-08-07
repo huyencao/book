@@ -74,7 +74,10 @@ class NewsController extends Controller
 
         $this->list_news->create($request->all());
 
-        return redirect(route('news.index'));
+        return redirect(route('news.index'))->with([
+            'flash_level' => 'success',
+            'flash_message' => 'Thêm thành công !'
+        ]);
     }
 
     /**
@@ -114,14 +117,39 @@ class NewsController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
         }
+
+        $news = $this->list_news->findNews($id);
+
+        if (!empty($request->file('fImage'))) {
+            $image = $news->thumbnail;
+            $file_name      = $request->file('fImage')->getClientOriginalName();
+            $thumbnail    = 'uploads/news/'.time().'-'.$file_name;
+            $request->file('fImage')->move('uploads/news/', $thumbnail);
+            if(File::exists($image)){
+                File::delete($image);
+            }
+        }
+
+        if (empty($thumbnail)){
+            $image_news = $news->thumbnail;
+        } else
+        {
+            $image_news = $thumbnail;
+        }
+
         $request->merge(
             [
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'thumbnail' => $image_news
             ]
         );
+
         $this->list_news->update($id, $request->all());
 
-        return redirect(route('news.index'));
+        return redirect()->route('news.index')->with([
+            'flash_level' => 'success',
+            'flash_message' => 'Cập nhật thành công !'
+        ]);
     }
 
     /**
@@ -132,12 +160,18 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        try {
+        $news = $this->list_news->findProduct($id);
+        if (isset($news)) {
+            $image = $news->thumbnail;
+            if(File::exists($image)){
+                File::delete($image);
+            }
             $this->list_news->delete($id);
-
-            return redirect(route('news.index'));
-        } catch (ModelNotFoundException $ex) {
-            return $ex->getMessage();
         }
+
+        return back()->with([
+            'flash_level' => 'success',
+            'flash_message' => 'Xóa thành công !'
+        ]);
     }
 }

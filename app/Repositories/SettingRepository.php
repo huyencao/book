@@ -12,8 +12,25 @@ class SettingRepository extends EloquentRepository
 
     public function settingSelect()
     {
-        $setting = Setting::all();
+        $setting = Setting::with('user')->get();
 
         return $setting;
+    }
+
+    public function infoSetting()
+    {
+        $data = Setting::find(2);
+
+        return $data;
+    }
+
+    public function findSetting($id){
+
+        $data = Setting::find($id);
+        if ($data == null) {
+            return false;
+        } else {
+            return $data;
+        }
     }
 }

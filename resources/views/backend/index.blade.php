@@ -102,6 +102,11 @@
                         <i class="fa fa-product-hunt" aria-hidden="true"></i> <span>Product</span>
                      </a>
                   </li>
+                  <li class="{{ Request::segment(2) === 'banner' ? 'active' : null  }}">
+                     <a href="{{ route('banner.index') }}">
+                        <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Banner</span>
+                     </a>
+                  </li>
                   <li class="treeview {{ Request::segment(2) === 'setting' ? 'active' : null }}">
                      <a href="#">
                      <i class="fa fa-cog" aria-hidden="true"></i> <span>Cấu hình</span>

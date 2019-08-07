@@ -34,13 +34,13 @@
                                         <td><span class="tbody-text">{{ ++$key }}</span>
                                         <td class="clearfix">
                                             <div class="tb-title fl-left">
-                                                <a href="{{ $value->slug }}" title="">{{ $value->title }}</a>
+                                                <a href="{{ isset($value->slug) ? $value->slug : ''}}" title="">{{ isset($value->title) ? $value->title : '' }}</a>
                                             </div>
                                         </td>
                                         <td>
-                                            <span class="tbody-text"></span>@if ($value->status == 1) {{ __('Đã đăng') }} @else {{ __('Đóng') }} @endif
+                                            <span class="tbody-text"><?php convertStatus($value->status);?></span>
                                         </td>
-                                        <td><span class="tbody-text">{{ $value->user->name }}</span></td>
+                                        <td><span class="tbody-text">{{ isset($value->user->name) ? $value->user->name : '' }}</span></td>
                                         <td>
                                             <span class="tbody-text">{{ date('d-m-Y', strtotime($value->updated_at)) }}</span>
                                         </td>

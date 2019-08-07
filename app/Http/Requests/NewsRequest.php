@@ -28,6 +28,7 @@ class NewsRequest extends FormRequest
             'author' => 'required',
             'cate_id' => 'required',
             'status' => 'required',
+            'fImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 
@@ -38,7 +39,10 @@ class NewsRequest extends FormRequest
             'title.unique'      => 'Tên bài viết đã tồn tại!',
             'author.required' => 'Bạn chưa nhập tên tác giả',
             'cate_id.required' => 'Chưa chọn danh mục bài viết',
-            'status.required' => 'Chưa chọn trạng thái bài viết'
+            'status.required' => 'Chưa chọn trạng thái bài viết',
+            'fImage.required' => 'Bạn chưa chọn ảnh sản phẩm',
+            'fImage.mimes' => 'Ảnh không đúng định dạng',
+            'fImage.max' => 'Kích thước ảnh quá lớn'
         ];
     }
 }

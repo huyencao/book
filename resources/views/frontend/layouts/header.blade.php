@@ -28,12 +28,12 @@
             <div class="row">
                 <div class="col-md-3 col-3 col-sm-3">
                     <div class="cart">
-                        <a href="cart.html"><img src="{{ asset('frontend/images/cart.png') }}" class="img-fluid" alt=""><span>1</span></a>
+                        <a href="cart.html"><img src="{{ asset('public/frontend/images/cart.png') }}" class="img-fluid" alt=""><span>1</span></a>
                     </div>
                 </div>
                 <div class="col-md-6 col-6 col-sm-6">
                     <div class="logo">
-                        <a href="/"><img src="{{ asset('frontend/images/logo.png') }}" class="img-fluid avarta-logo" alt=""></a>
+                        <a href="/"><img src="{{ asset('public/frontend/images/logo.png') }}" class="img-fluid avarta-logo" alt=""></a>
                     </div>
                 </div>
                 <div class="col-md-3 col-3 col-sm-3">

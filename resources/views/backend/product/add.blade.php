@@ -51,7 +51,7 @@
                     <label>Trạng thái</label>
                     <select name="status" class="form-control">
                         <option value="">Chọn trạng thái</option>
-                        <option value="1">Mở</option>
+                        <option value="1">Kích hoạt</option>
                         <option value="0">Đóng</option>
                     </select>
                 </div>
@@ -67,9 +67,10 @@
                     <label>Danh mục</label>
                     <select name="cate_id" class="form-control">
                         <option value="">Chọn danh mục</option>
-                        @foreach($cate_product as $item)
-                            <option value="{{ $item->id }}">{{ $item->title }}</option>
-                        @endforeach
+{{--                        @foreach($cate_product as $item)--}}
+{{--                            <option value="{{ $item->id }}">{{ $item->title }}</option>--}}
+{{--                        @endforeach--}}
+                        {!! showCategories($cate_product) !!}
                     </select>
                 </div>
                 <div class="box-footer">

@@ -33,10 +33,10 @@
                             <select name="status">
                                 <option value="#">-- Chọn trạng thái --</option>
                                 @if ($category_product->status == 1)
-                                    <option value="1" selected>Đã đăng</option>
+                                    <option value="1" selected>Kích hoạt</option>
                                     <option value="0">Đóng</option>
                                 @else
-                                    <option value="1">Đã đăng</option>
+                                    <option value="1">Kích hoạt</option>
                                     <option value="0" selected>Đóng</option>
                                 @endif
                             </select>

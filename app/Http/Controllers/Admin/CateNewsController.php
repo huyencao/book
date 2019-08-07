@@ -45,7 +45,7 @@ class CateNewsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CateNewsRequest $request)
@@ -61,13 +61,16 @@ class CateNewsController extends Controller
         );
         $this->cate_news->create($request->all());
 
-        return redirect()->route('cate-news.index');
+        return redirect()->route('cate-news.index')->with([
+            'flash_level' => 'success',
+            'flash_message' => 'Thêm thành công !'
+        ]);;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -78,64 +81,56 @@ class CateNewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        try {
-            $category_news = $this->cate_news->findCate($id);
-            $cate_parent = $this->cate_news->listCateParent();
+        $category_news = $this->cate_news->findCate($id);
+        $cate_parent = $this->cate_news->listCateParent();
 
-            return view('backend.cate-news.edit', compact('category_news','cate_parent'));
-
-        } catch (ModelNotFoundException $ex) {
-            return $ex->getMessage();
-        }
-
+        return view('backend.cate-news.edit', compact('category_news', 'cate_parent'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(CateNewsEditRequest $request, $id)
     {
         if (Auth::check()) {
-        $user = Auth::user();
-    }
+            $user = Auth::user();
+        }
         $request->merge(
             [
                 'user_id' => $user->id
             ]
         );
 
-        try {
-            $this->cate_news->update($id, $request->all());
+        $this->cate_news->update($id, $request->all());
 
-            return redirect(route('cate-news.index'));
-        } catch (ModelNotFoundException $ex) {
-            return $ex->getMessage();
-        }
+        return redirect(route('cate-news.index'))->with([
+            'flash_level' => 'success',
+            'flash_message' => 'Cập nhật thành công !'
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        try {
-            $this->cate_news->delete($id);
+        $this->cate_news->delete($id);
 
-            return redirect(route('cate-news.index'));
-        } catch (ModelNotFoundException $ex) {
-            return $ex->getMessage();
-        }
+        return redirect(route('cate-news.index'))->with([
+            'flash_level' => 'success',
+            'flash_message' => 'Thêm thành công !'
+        ]);
     }
 }

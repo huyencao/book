@@ -37,7 +37,7 @@ class EditNewsRequest extends FormRequest
             'title.required'    => 'Bạn chưa nhập tên bài viết!',
             'author.required' => 'Bạn chưa nhập tên tác giả',
             'cate_id.required' => 'Chưa chọn danh mục bài viết',
-            'status.required' => 'Chưa chọn trạng thái bài viết'
+            'status.required' => 'Chưa chọn trạng thái bài viết',
         ];
     }
 }

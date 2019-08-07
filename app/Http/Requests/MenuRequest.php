@@ -24,7 +24,23 @@ class MenuRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'title' => 'required|unique:menus',
+            'link' => 'required|unique:menus',
+            'position' => 'required|unique:menus',
+            'status' =>'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Bạn chưa nhập tên menu!',
+            'title.unique' => 'Tên menu đã tồn tại!',
+            'link.required' => 'Bạn chưa nhập đường dẫn menu',
+            'link.unique' => 'Đường dẫn đã tồn tại',
+            'position.required' => 'Bạn chưa nhập vị trí menu',
+            'position.unique' => 'Vị trí đã tồn tại',
+            'status.required' => 'Bạn chưa chọn trạng thái menu'
         ];
     }
 }

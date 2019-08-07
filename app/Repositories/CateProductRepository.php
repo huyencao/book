@@ -18,6 +18,11 @@ class CateProductRepository extends EloquentRepository
         return $data;
     }
 
+    public function listCateProductOpen(){
+        $data = CategoryProduct::with('user')->where('status', 1)->get();
+
+        return $data;
+    }
     public function listCateParent()
     {
         $data = CategoryProduct::where('parent_id', 0)->get();

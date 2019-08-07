@@ -27,7 +27,7 @@ class ProductRepository extends EloquentRepository
 
     public function listProductAdmin()
     {
-        $list_product = Product::where('status', 1)->get();
+        $list_product = Product::get();
 
         return $list_product;
     }
@@ -44,5 +44,15 @@ class ProductRepository extends EloquentRepository
         $data = Product::with('categoryProduct')->where('slug', $slug   )->limit(config('app.related_product'))->get();
 
         return $data;
+    }
+
+    public function findProduct($id)
+    {
+        $data = Product::find($id);
+        if ($data == null) {
+            return false;
+        } else {
+            return $data;
+        }
     }
 }

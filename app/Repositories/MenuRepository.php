@@ -12,7 +12,17 @@ class MenuRepository extends EloquentRepository
     }
     public function listMenu()
     {
-        return Menu::where('status', 1)->get();
+        return Menu::with('user')->where('status', 1)->orderBy('position', 'ASC')->get();
+    }
+
+    public function listMenuAll()
+    {
+        return Menu::with('user')->get();
+    }
+
+    public function listMenuParent()
+    {
+        return  Menu::where('parent_id', 0)->get();
     }
 
     public function findMenu($id)

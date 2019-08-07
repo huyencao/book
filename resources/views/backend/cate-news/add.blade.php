@@ -42,7 +42,7 @@
                             <select name="status">
                                 <option value="">-- Chọn trạng thái --</option>
                                 <option value="1">Đã đăng</option>
-                                <option value="2">Đóng</option>
+                                <option value="0">Đóng</option>
                             </select>
                             <button type="submit" name="btn-submit" id="btn-submit">Thêm mới</button>
                         </form>

@@ -31,7 +31,7 @@
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
                             <label for="title">Tiêu đề</label>
-                            <input type="text" name="title" id="title" value="{{ $category_news->title }}">
+                            <input type="text" name="title" id="title" value="{{ isset($category_news->title) ? $category_news->title : '' }}">
                             <label>Danh mục cha</label>
                             <select name="parent_id">
                                 <option value="">-- Chọn danh mục --</option>

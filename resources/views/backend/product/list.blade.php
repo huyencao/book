@@ -1,6 +1,6 @@
 @extends('backend.index')
 
-@section('title', 'GCO-Book/News')
+@section('title', 'Product')
 
 @section('content')
     <div id="main-content-wp" class="list-post-page">
@@ -18,7 +18,6 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <td><input type="checkbox" name="checkAll" id="checkAll"></td>
                                     <td><span class="thead-text">STT</span></td>
                                     <td><span class="thead-text">Tiêu đề</span></td>
                                     <td><span class="thead-text">Danh mục</span></td>
@@ -32,7 +31,6 @@
                                 @if (!empty($list_product))
                                     @foreach ($list_product as  $key => $product)
                                         <tr>
-                                            <td><input type="checkbox" name="checkItem" class="checkItem"></td>
                                             <td><span class="tbody-text">{{ ++$key }}</span>
                                             <td class="clearfix title-news" style="display: flex">
                                                 <div class="tb-title fl-left">
@@ -60,7 +58,6 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>

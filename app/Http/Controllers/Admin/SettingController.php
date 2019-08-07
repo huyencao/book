@@ -4,9 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SettingRequest;
+use App\Repositories\SettingRepository;
+use Auth;
+use File;
 
 class SettingController extends Controller
 {
+    protected $setting;
+
+    public function __construct(SettingRepository $setting)
+    {
+        $this->setting = $setting;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,11 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return view('backend.setting.general');
+//        $site_info = $this->setting->settingSelect();
+        $site_info = $this->setting->infoSetting();
+
+//        dd($site_info);
+        return view('backend.setting.list', compact('site_info'));
     }
 
     /**
@@ -24,7 +39,7 @@ class SettingController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.setting.add');
     }
 
     /**
@@ -35,7 +50,32 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+
+        if (!empty($request->file('fImage'))) {
+            $file_name = $request->file('fImage')->getClientOriginalName();
+            $image_logo = 'uploads/logo/' . time() . '-' . $file_name;
+            $request->file('fImage')->move('uploads/logo/', $image_logo);
+        }
+        if (!empty($request->file('fFavicon'))) {
+            $file_name = $request->file('fFavicon')->getClientOriginalName();
+            $image_favicon = 'uploads/logo/' . time() . '-' . $file_name;
+            $request->file('fFavicon')->move('uploads/logo/', $image_favicon);
+        }
+        $request->merge(
+            [
+                'user_id' => $user->id,
+                'site_logo' => $image_logo,
+                'site_favicon' => $image_favicon,
+            ]
+        );
+
+//        dd($request->all());
+        $this->setting->create($request->all());
+
+        return redirect(route('setting.index'));
     }
 
     /**
@@ -69,7 +109,62 @@ class SettingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+//        dd($request->all());
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+
+        $setting = $this->setting->findSetting($id);
+
+
+        if (!empty($request->file('fImage'))) {
+            $image = $setting->site_logo;
+            $file_name      = $request->file('fImage')->getClientOriginalName();
+            $logo    = 'uploads/logo/'.time().'-'.$file_name;
+            $request->file('fImage')->move('uploads/logo/', $logo);
+            if(File::exists($image)){
+                File::delete($image);
+            }
+        }
+
+        if (empty($logo)){
+            $site_logo = $setting->site_logo;
+        } else
+        {
+            $site_logo = $logo;
+        }
+
+        if (!empty($request->file('fFavicon'))) {
+            $image = $setting->site_favicon;
+            $file_name      = $request->file('fFavicon')->getClientOriginalName();
+            $favicon    = 'uploads/logo/'.time().'-'.$file_name;
+            $request->file('fFavicon')->move('uploads/logo/', $favicon);
+            if(File::exists($image)){
+                File::delete($image);
+            }
+        }
+
+        if (empty($favicon)){
+            $site_favicon = $setting->site_favicon;
+        } else
+        {
+            $site_favicon = $favicon;
+        }
+
+        $request->merge(
+            [
+                'user_id' => $user->id,
+                'site_logo' => $site_logo,
+                'site_favicon' => $site_favicon
+            ]
+        );
+
+        $this->setting->update($id, $request->all());
+
+        return redirect()->route('setting.index')->with([
+            'flash_level' => 'success',
+            'flash_message' => 'Cập nhật thành công !'
+        ]);
     }
 
     /**

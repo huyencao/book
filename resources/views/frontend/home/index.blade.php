@@ -3,7 +3,12 @@
 @section('content')
 <main>
 	<section id="banner">
-		<div class="avarta"><img src="{{ asset('frontend/images/banner.png') }}" class="img-fluid" width="100%" alt=""></div>
+		<div class="avarta">
+			@if (!empty($banner->thumbnail))
+				<img src="{{ asset($banner->thumbnail) }}"
+					 class="img-fluid" width="100%" style="display: block; margin-bottom: 10px">
+			@endif</div>
+
 		<div class="caption">
 			<div class="container">
 				<div class="info">
