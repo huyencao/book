@@ -40,7 +40,7 @@
                                                 <option value="#">Môn học</option>
                                                 @if (!empty($list_subjects))
                                                     @foreach ($list_subjects as $key => $value)
-                                                        <option value="{{ $value->subjects }}">{{ $value->subjects }}</option>
+                                                        <option value="{{ empty($value->subjects) ? '' : $value->subjects }}">{{ empty($value->subjects) ? '' : $value->subjects }}</option>
                                                     @endforeach
                                                 @endif
                                             </select>
@@ -64,10 +64,10 @@
                                                 <div class="left-list">
                                                     <ul class="list-inline tabs">
                                                         <li class="list-inline-item tab-link current" data-tab="tab-1">
-                                                            <i class="fa fa-th-large"></i>Lưới
+                                                            <i class="fa fa-th-large"></i> Lưới
                                                         </li>
                                                         <li class="list-inline-item tab-link" data-tab="tab-2">
-                                                            <i class="fa fa-th-list"></i>Danh sách
+                                                            <i class="fa fa-th-list"></i> Danh sách
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -98,8 +98,8 @@
                                     <div class="list-prod">
                                         <div id="tab-1" class="tab-content current">
                                             <div class="row">
-                                                @if (!empty($data_search))
-                                                    @foreach ($data_search as $product)
+                                                @if (!empty($results_search))
+                                                    @foreach ($results_search as $product)
                                                         <div class="col-md-4 col-6 col-sm-6">
                                                             <div class="item">
                                                                 <div class="avarta"><a
@@ -134,19 +134,20 @@
                                                     @endforeach
                                                 @endif
                                                 <div class="col-md-12">
-{{--                                                    {{ $data_search->links() }}--}}
+                                                    {{--                                                    {{ $data_search->links() }}--}}
                                                 </div>
                                             </div>
                                         </div>
                                         <div id="tab-2" class="tab-content">
                                             <div class="row">
-                                                @if (!empty($data_search))
-                                                    @foreach ($data_search as $key => $value)
+                                                @if (!empty($results_search))
+                                                    @foreach ($results_search as $key => $value)
                                                         <div class="col-md-12">
                                                             <div class="item item-list">
                                                                 <div class="avarta"><a href="">
                                                                         <img src="{{ asset( empty($value->thumbnail) ? '' : $value->thumbnail) }}"
-                                                                             class="img-fluid" alt=""></a></div>
+                                                                             class="img-fluid" alt=""></a>
+                                                                </div>
                                                                 <div class="info">
                                                                     <div class="vote">
                                                                         <i class="fa fa-star"></i>
@@ -159,8 +160,6 @@
                                                                         <a href="/book/product-detail/{{ empty($value->slug) ? '' : $value->slug }}.html">{{ empty($value->name) ? '' : $value->name }}</a>
                                                                     </h3>
                                                                     <div class="price">
-                                                                        {{--                                                                        <p>165 000<span>đ</span></p>--}}
-                                                                        {{--                                                                        <del>200 000 <span>đ</span></del>--}}
                                                                         @if ($value->price_new == 0)
                                                                             <p>{{ number_format($value->price_old, 0, '.', '.') }}
                                                                                 <span>đ</span></p>
@@ -172,7 +171,7 @@
                                                                         @endif
                                                                     </div>
                                                                     <div class="desc">
-                                                                        <p>{!! str_limit(empty($value->detail) ? '' : $value->detail) !!}</p>
+                                                                        <p>{!! str_limit(empty($value->detail) ? '' : $value->detail, 60) !!}</p> ...
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -180,8 +179,8 @@
                                                     @endforeach
                                                 @endif
                                             </div>
-                                            <div class="pagination">
-{{--                                                {{ $data_search->links() }}--}}
+                                            <div class="col-md-12">
+{{--                                                {{ $results_search->links() }}--}}
                                             </div>
                                         </div>
                                     </div>

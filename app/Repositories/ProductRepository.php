@@ -41,7 +41,9 @@ class ProductRepository extends EloquentRepository
 
     public function listRelatedProducts($slug)
     {
-        $data = Product::with('categoryProduct')->where('slug', $slug   )->limit(config('app.related_product'))->get();
+        $item  = Product::where('slug', $slug)->first();
+        $cate_id = $item->cate_id;
+        $data = Product::with('categoryProduct')->where('cate_id', $cate_id)->limit(config('app.related_product'))->get();
 
         return $data;
     }

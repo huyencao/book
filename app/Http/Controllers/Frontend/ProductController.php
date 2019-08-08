@@ -6,13 +6,17 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\ProductRepository;
+use App\Repositories\CommentRepository;
 
 class ProductController extends Controller
 {
     protected $product;
-    public function __construct(ProductRepository $product)
+    protected $comment;
+
+    public function __construct(ProductRepository $product, CommentRepository $comment)
     {
         $this->product = $product;
+        $this->comment = $comment;
     }
 
     public function index()
@@ -28,8 +32,9 @@ class ProductController extends Controller
     {
         $data = $this->product->detailProduct($slug);
         $list_related = $this->product->listRelatedProducts($slug);
+        $list_comment = $this->comment->listComment();
 
-        return view('frontend.products.detail', compact('data', 'list_related'));
+        return view('frontend.products.detail', compact('data', 'list_related', 'list_comment'));
     }
 
     public function search(Request $request)
@@ -50,8 +55,9 @@ class ProductController extends Controller
         if ($request->has('subjects')) {
             $product->orwhere('subjects', $request->subjects);
         }
-        $data_search = $product->get();
 
-        return view('frontend.products.search', compact('data_search', 'list_class', 'list_subjects'));
+        $results_search = $product->get();
+
+        return view('frontend.products.search', compact('results_search', 'list_class', 'list_subjects'));
     }
 }

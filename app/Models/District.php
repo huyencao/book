@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class District extends Model
 {
-    protected $table = 'districts';
+    protected $table = 'vn_district';
 
-    protected $fillable =  ['name', 'city_id'];
+    protected $primaryKey = 'districtid';
 
-    public function city()
+    protected $fillable = ['districtid', 'name', 'type', 'location', 'provinceid'];
+
+    protected  $incrementing = false;
+
+    public function province()
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(Province::class, 'provinceid', 'districtid');
     }
 
-    public function order()
-    {
-        return $this->hasOne(Order::class);
-    }
 }

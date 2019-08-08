@@ -4,7 +4,7 @@ return [
     'product_hot' => 8,
     'news_hot' => 3,
     'paginate_news' => 9,
-    'paginate_product' => 12,
+    'paginate_product' => 9,
     'related_product' => 4,
     'cate_news' => 5,
     /*

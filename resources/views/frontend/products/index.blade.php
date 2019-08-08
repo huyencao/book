@@ -57,6 +57,19 @@
                                 <div class="list-prod">
                                     <div class="avarta"><img src="{{ asset('public/frontend/images/product.png') }}"
                                                              class="img-fluid" width="100%" alt=""></div>
+                                    @if(session('flash_message'))
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="alert alert-{!! session('flash_level') !!} alert-dismissible">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                            aria-hidden="true">×
+                                                    </button>
+                                                    <h4><i class="icon fa fa-check"></i> Thông báo</h4>
+                                                    {!! session('flash_message') !!}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
                                     <div class="title-list-prod"><span>Sản phẩm</span></div>
                                     <div class="sort">
                                         <div class="row">
@@ -64,10 +77,10 @@
                                                 <div class="left-list">
                                                     <ul class="list-inline tabs">
                                                         <li class="list-inline-item tab-link current" data-tab="tab-1">
-                                                            <i class="fa fa-th-large"></i>Lưới
+                                                            <i class="fa fa-th-large"></i> Lưới
                                                         </li>
                                                         <li class="list-inline-item tab-link" data-tab="tab-2">
-                                                            <i class="fa fa-th-list"></i>Danh sách
+                                                            <i class="fa fa-th-list"></i> Danh sách
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -134,16 +147,9 @@
                                                     @endforeach
                                                 @endif
                                                 <div class="col-md-12">
-                                                    <div class="pagination">
+{{--                                                    <div class="pagination">--}}
                                                         {{ $products->links() }}
-{{--                                                        <ul class="list-inline">--}}
-{{--                                                            <li class="list-inline-item"><span>Trang</span></li>--}}
-{{--                                                            <li class="list-inline-item"><a href="#" class="active">1</a></li>--}}
-{{--                                                            <li class="list-inline-item"><a href="#" class="">2</a></li>--}}
-{{--                                                            <li class="list-inline-item"><a href="#" class="">3</a></li>--}}
-{{--                                                            <li class="list-inline-item"><a href="#" class="">4</a></li>--}}
-{{--                                                        </ul>--}}
-                                                    </div>
+{{--                                                    </div>--}}
                                                 </div>
                                             </div>
                                         </div>
@@ -155,7 +161,8 @@
                                                             <div class="item item-list">
                                                                 <div class="avarta"><a href="">
                                                                         <img src="{{ asset( empty($value->thumbnail) ? '' : $value->thumbnail) }}"
-                                                                             class="img-fluid" alt=""></a></div>
+                                                                             class="img-fluid" alt=""></a>
+                                                                </div>
                                                                 <div class="info">
                                                                     <div class="vote">
                                                                         <i class="fa fa-star"></i>
@@ -168,8 +175,6 @@
                                                                         <a href="/book/product-detail/{{ empty($value->slug) ? '' : $value->slug }}.html">{{ empty($value->name) ? '' : $value->name }}</a>
                                                                     </h3>
                                                                     <div class="price">
-                                                                        {{--                                                                        <p>165 000<span>đ</span></p>--}}
-                                                                        {{--                                                                        <del>200 000 <span>đ</span></del>--}}
                                                                         @if ($value->price_new == 0)
                                                                             <p>{{ number_format($value->price_old, 0, '.', '.') }}
                                                                                 <span>đ</span></p>
@@ -181,7 +186,7 @@
                                                                         @endif
                                                                     </div>
                                                                     <div class="desc">
-                                                                        <p>{!! str_limit(empty($value->detail) ? '' : $value->detail) !!}</p>
+                                                                        <p>{!! str_limit(empty($value->detail) ? '' : $value->detail, 60) !!}</p> ...
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -189,7 +194,7 @@
                                                     @endforeach
                                                 @endif
                                             </div>
-                                            <div class="pagination">
+                                            <div class="col-md-12">
                                                 {{ $products->links() }}
                                             </div>
                                         </div>

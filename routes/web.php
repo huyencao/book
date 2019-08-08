@@ -44,10 +44,10 @@ Route::namespace('Frontend')->group(function () {
     Route::resource('contact', 'ContactController');
     Route::get('news', 'NewsController@index')->name('news');
     Route::get('news-detail/{slug}.html', 'NewsController@detail')->name('news.detail');
-    Route::get('product', 'ProductController@index')->name('product');
+    Route::get('product', 'ProductController@index')->name('home.product');
     Route::get('product-detail/{slug}.html', 'ProductController@detail')->name('product.detail');
     Route::get('search', 'ProductController@search')->name('product.search');
-//    Route::post('find', 'SearchController@find')->name('search.find');
+    Route::post('comment', 'CommentController@store')->name('comment.store');
 });
 
 Route::get('login',['as'=>'login', 'uses'=>'Auth\LoginController@getLogin']);

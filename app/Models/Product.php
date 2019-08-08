@@ -47,4 +47,9 @@ class Product extends Model
 
         return $query;
     }
+
+    public  function comment()
+    {
+        return $this->hasMany(Comment::class, 'id', 'id');
+    }
 }

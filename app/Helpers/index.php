@@ -22,6 +22,7 @@ function showCategories($data, $parent_id = 0, $char = '')
         }
     }
 }
+
 //menu
 function menuParent($data_menu, $parent_id = 0, $char = '')
 {
@@ -43,3 +44,38 @@ function menuParent($data_menu, $parent_id = 0, $char = '')
     }
 }
 
+
+function star($star)
+{
+    if ($star == 5) {
+        echo '<i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>';
+    } elseif ($star == 4) {
+        echo '<i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-o"></i>';
+    } elseif ($star == 3) {
+            echo '<i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star-o"></i>
+                  <i class="fa fa-star-o"></i>';
+    } elseif ($star == 2) {
+        echo '<i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>';
+    } else {
+        echo '<i class="fa fa-star"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>';
+    }
+}

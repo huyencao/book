@@ -32,12 +32,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="carousel-indicators">
-{{--                                                    {{ var_dump(json_decode($item->image_gallery)) }}--}}
-
+                                                    {{--                                                    {{ var_dump(json_decode($item->image_gallery)) }}--}}
                                                     @if (!empty($item->image_gallery))
                                                         @foreach (json_decode($item->image_gallery) as $key => $value)
                                                             <div class="item">
-                                                                <img src="{!! asset($value) !!} "
+                                                                <img src="{!! asset($value) !!}"
                                                                      class="img-fluid"
                                                                      data-target="#carouselExampleIndicators"
                                                                      data-slide-to="0"/>
@@ -100,14 +99,62 @@
                                     </div>
                                 </div>
                                 <div class="cmt">
-{{--                                    <img src="{{ asset('public/frontend/images/fb.png') }}" class="img-fluid" width="100%"--}}
-{{--                                         alt="">--}}
-                                    <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="" data-numposts="5"></div>
+                                    <div class="review_comment" style="margin-bottom: 25px">
+                                        <h4>{{ __('Chia sẻ nhận xét về sản phẩm') }}</h4>
+                                        <button type="button" class="btn btn-default js-customer-button"
+                                                id="button">{{ __('Viết nhận xét của bạn') }}
+                                        </button>
+                                    </div>
+
+                                    @include('frontend.block.error')
+
+                                    <div class="write-comment" id="writeComment" style="display: none">
+                                        <form action="{{ route('comment.store') }}" method="POST" autocomplete="off">
+                                            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                            <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                            <div class="form-group">
+                                                <label for="usr">Họ tên</label>
+                                                <input type="text" class="form-control" id="name" name="name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="usr">Email</label>
+                                                <input type="email" class="form-control" id="email" name="email">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="comment">Nội dung đánh giá</label>
+                                                <textarea class="form-control" rows="5" id="content"
+                                                          name="content"></textarea>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label for="usr">Đánh giá sao</label>
+                                                <div class="lead evaluation">
+                                                    <span id="colorstar" class="starrr ratable"></span>
+                                                    <span id="meaning"></span>
+                                                    <input type="hidden" name="rating" id="count">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-info"
+                                                        id="saveReview">Comment
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div id="comments">
+                                        @foreach($list_comment as $comment)
+                                            <div class="rv-comment" style="display: block; margin-bottom: 20px;">
+                                                <span class="star" style=" color: #ffc120;">{{ star($comment->star) }}</span>
+                                                <span class="name-comment" style="padding-bottom: 5px;">{{ $comment->name }}</span><br/>
+                                                <span class="content-comment" style="display:block; font-size: 14px; margin-top: 7px">{{ $comment->content }}</span>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
-                        @endforeach
-                    @endif
                 </div>
+                @endforeach
+                @endif
+            </div>
             </div>
             <div class="other-list">
                 <div class="container">
@@ -121,7 +168,9 @@
                                             <div class="swiper-slide">
                                                 <div class="item">
                                                     <div class="avarta">
-                                                        <a href=""><img src="{{ asset(empty($item->thumbnail) == true ? '' : $item->thumbnail) }}" class="img-fluid"
+                                                        <a href=""><img
+                                                                    src="{{ asset(empty($item->thumbnail) == true ? '' : $item->thumbnail) }}"
+                                                                    class="img-fluid"
                                                                     alt=""></a></div>
                                                     <div class="info">
                                                         <div class="vote">
