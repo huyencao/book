@@ -55,14 +55,32 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+//        dd($request->fImageGallery[]);
         if (Auth::check()) {
             $user = Auth::user();
         }
+
         if (!empty($request->file('fImage'))) {
             $file_name = $request->file('fImage')->getClientOriginalName();
             $image = 'uploads/product/' . time() . '-' . $file_name;
             $request->file('fImage')->move('uploads/product/', $image);
         }
+
+        if($request->hasfile('fImageGallery'))
+        {
+
+            foreach($request->file('fImageGallery') as $image)
+            {
+                $name = $image->getClientOriginalName();
+                $value = 'uploads/product/' . time() . '-' . $name;
+
+                $image->move('/uploads/product/', $value);
+                $data[] = $value;
+            }
+        }
+
+        $filename = json_encode($data);
+
         if ($request->sale != 0) {
             $price_new = $request->price_old - ($request->price_old * $request->sale) / 100;
         } else {
@@ -73,8 +91,9 @@ class ProductController extends Controller
             [
                 'user_id' => $user->id,
                 'slug' => str_slug($request->name),
-                'thumbnail' => !empty($image) == true ? $image : null,
-                'price_new' => $price_new
+                'thumbnail' => $image,
+                'price_new' => $price_new,
+                'image_gallery' => $filename
             ]
         );
         $this->product->create($request->all());
@@ -134,6 +153,26 @@ class ProductController extends Controller
             }
         }
 
+
+        if($request->hasfile('fImageGallery'))
+        {
+            $image_gallery = $product->image_gallery;
+            foreach($request->file('fImageGallery') as $image)
+            {
+                $name = $image->getClientOriginalName();
+                $value = 'uploads/product/' . time() . '-' . $name;
+
+                $image->move('/uploads/product/', $value);
+                $data[] = $value;
+            }
+
+            if(File::exists($image_gallery)){
+                File::delete($image_gallery);
+            }
+        }
+
+        $filename = json_encode($data);
+
         $sale = $product->sale;
         if ($request->sale == 0)
         {
@@ -156,7 +195,8 @@ class ProductController extends Controller
             [
                 'user_id' => $user->id,
                 'thumbnail' => $image_product,
-                'price_new' => $price_new
+                'price_new' => $price_new,
+                'image_gallery' => $filename
             ]
         );
 

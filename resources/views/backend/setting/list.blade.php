@@ -45,7 +45,7 @@
                   </div>
                   <div class="form-group">
                      <label>Số điện thoại</label>
-                     <input type="tel" class="form-control" name="site_phone" id="site_phone" value="{{ isset($site_info->site_email) ? $site_info->site_email : '' }}">
+                     <input type="tel" class="form-control" name="site_phone" id="site_phone" value="{{ isset($site_info->site_phone) ? $site_info->site_phone : '' }}">
                   </div>
                   <div class="form-group">
                      <label>Hotline</label>
@@ -74,7 +74,7 @@
                   </div>
                   <div class="form-group">
                      <label>Google Analytics</label>
-                     <textarea  class="form-control" name="google_analytics" id="site_google_analytics" rows="6">{{ isset($site_info->site_google_analytics) ? $site_info->site_google_analytics : '' }}</textarea>
+                     <textarea  class="form-control" name="google_analytics" id="site_google_analytics" rows="6">{{ isset($site_info->google_analytics) ? $site_info->google_analytics : '' }}</textarea>
                   </div>
                   <div class="form-group">
                      <label>Bản quyền</label>
@@ -83,11 +83,11 @@
                   </div>
                   <div class="form-group">
                      <label>CODE GOOGLE MAPS</label>
-                     <textarea  class="form-control" name="code_maps" id="codemaps" rows="6">{{ isset($site_info->code_maps) ? $site_info->code_maps : null }}</textarea>
+                     <textarea  class="form-control" name="code_maps" id="code_maps" rows="6">{!! isset($site_info->code_maps) ? $site_info->code_maps : null !!}</textarea>
                   </div>
                   <div class="form-group">
                      <label>Email nhận thông tin liên hệ</label>
-                     <input type="text" class="form-control" name="emai_linfo" value="{{ isset($site_info->email_info) ? $site_info->email_info : null }}">
+                     <input type="text" class="form-control" name="email_info" value="{{ isset($site_info->email_info) ? $site_info->email_info : null }}">
                   </div>
                </div>
             </div>

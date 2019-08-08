@@ -55,4 +55,17 @@ class ProductRepository extends EloquentRepository
             return $data;
         }
     }
+
+    public function listClass(){
+        $data = Product::where('status', 1)->select('class')->get();
+
+        return $data;
+    }
+
+    public function listSubject(){
+        $data = Product::where('status', 1)->select('subjects')->get();
+
+        return $data;
+    }
+
 }

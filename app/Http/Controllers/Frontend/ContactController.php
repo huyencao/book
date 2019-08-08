@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ContactRequest;
+//use App\Http\Requests\ContactRequest;
+use App\Models\Contact;
 
 class ContactController extends Controller
 {
@@ -34,9 +36,27 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ContactRequest $request)
+    public function store(Request $request)
     {
-        dd($request->all());
+        $validator = \Validator::make($request->all(), [
+            'name' => 'required|unique:contact,name|max:50|min:5',
+            'phone' => 'required|unique:contact,phone|max:12|min:10',
+            'email' => 'required|unique:contact,email|email|max:35|min:5',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('contact.index')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        Contact::create($request->all());
+
+        return redirect(route('contact.index'))->with([
+            'flash_level' => 'success',
+            'flash_message' => 'Đăng ký nhận thông tin thành công!'
+        ]);
+
     }
 
     /**

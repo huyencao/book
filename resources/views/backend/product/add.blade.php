@@ -85,6 +85,15 @@
                     </div>
                 </div>
             </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Hình ảnh liên quan</label>
+                    <div class="file-loading">
+                            <input id="gallery" name="fImageGallery[]" type="file" multiple>
+                    </div>
+                </div>
+            </div>
+
         </form>
     </div>
 @endsection

@@ -72,7 +72,10 @@ class SettingController extends Controller
 
         $this->setting->create($request->all());
 
-        return redirect(route('setting.index'));
+        return redirect(route('setting.index'))->with([
+            'flash_level' => 'success',
+            'flash_message' => 'Thêm thành công !'
+        ]);
     }
 
     /**

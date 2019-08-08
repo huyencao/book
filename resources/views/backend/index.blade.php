@@ -82,30 +82,65 @@
                         <i class="fa fa-bars" aria-hidden="true"></i> <span>Menu</span>
                      </a>
                   </li>
-                  <li class="{{ Request::segment(2) === 'cate-news' ? 'active' : null  }}">
-                     <a href="{{ route('cate-news.index') }}">
-                        <i class="fa fa-th-list" aria-hidden="true"></i> <span>Category news</span>
+                  <li class="treeview {{ Request::segment(2) === 'setting' ? 'active' : null }}">
+                     <a href="#">
+                        <i class="fa fa-cog" aria-hidden="true"></i> <span>Manager news</span>
+                        <span class="pull-right-container">
+                     <i class="fa fa-angle-left pull-right"></i>
+                     </span>
                      </a>
+                     <ul class="treeview-menu">
+                        <li class="{{ Request::segment(2) === 'cate-news' ? 'active' : null  }}">
+                           <a href="{{ route('cate-news.index') }}">
+                              <i class="fa fa-th-list" aria-hidden="true"></i> <span>Category news</span>
+                           </a>
+                        </li>
+                        <li class="{{ Request::segment(2) === 'news' ? 'active' : null  }}">
+                           <a href="{{ route('news.index') }}">
+                              <i class="fa fa-newspaper-o" aria-hidden="true"></i> <span>News</span>
+                           </a>
+                        </li>
+                     </ul>
                   </li>
-                  <li class="{{ Request::segment(2) === 'news' ? 'active' : null  }}">
-                     <a href="{{ route('news.index') }}">
-                        <i class="fa fa-newspaper-o" aria-hidden="true"></i> <span>News</span>
+                  <li class="treeview {{ Request::segment(2) === 'setting' ? 'active' : null }}">
+                     <a href="#">
+                        <i class="fa fa-cog" aria-hidden="true"></i> <span>Manager product</span>
+                        <span class="pull-right-container">
+                     <i class="fa fa-angle-left pull-right"></i>
+                     </span>
                      </a>
-                  </li>
-                  <li class="{{ Request::segment(2) === 'cate-product' ? 'active' : null  }}">
-                     <a href="{{ route('cate-product.index') }}">
-                        <i class="fa fa-list-alt" aria-hidden="true"></i> <span>Cate product</span>
-                     </a>
-                  </li>
-                  <li class="{{ Request::segment(2) === 'product' ? 'active' : null  }}">
-                     <a href="{{ route('product.index') }}">
-                        <i class="fa fa-product-hunt" aria-hidden="true"></i> <span>Product</span>
-                     </a>
+                     <ul class="treeview-menu">
+                        <li class="{{ Request::segment(2) === 'cate-product' ? 'active' : null  }}">
+                           <a href="{{ route('cate-product.index') }}">
+                              <i class="fa fa-list-alt" aria-hidden="true"></i> <span>Cate product</span>
+                           </a>
+                        </li>
+                        <li class="{{ Request::segment(2) === 'product' ? 'active' : null  }}">
+                           <a href="{{ route('product.index') }}">
+                              <i class="fa fa-product-hunt" aria-hidden="true"></i> <span>Product</span>
+                           </a>
+                        </li>
+                     </ul>
                   </li>
                   <li class="{{ Request::segment(2) === 'banner' ? 'active' : null  }}">
                      <a href="{{ route('banner.index') }}">
                         <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Banner</span>
                      </a>
+                  </li>
+                  <li class="treeview {{ Request::segment(2) === 'setting' ? 'active' : null }}">
+                     <a href="#">
+                        <i class="fa fa-cog" aria-hidden="true"></i> <span>Manager order</span>
+                        <span class="pull-right-container">
+                     <i class="fa fa-angle-left pull-right"></i>
+                     </span>
+                     </a>
+                     <ul class="treeview-menu">
+{{--                        <li class="{{ Request::segment(2) === 'cate-product' ? 'active' : null  }}">--}}
+{{--                           <a href="{{ route('cate-product.index') }}">--}}
+{{--                              <i class="fa fa-list-alt" aria-hidden="true"></i> <span>Cate product</span>--}}
+{{--                           </a>--}}
+{{--                        </li>--}}
+                     </ul>
                   </li>
                   <li class="treeview {{ Request::segment(2) === 'setting' ? 'active' : null }}">
                      <a href="#">

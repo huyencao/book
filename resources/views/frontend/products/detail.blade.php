@@ -27,36 +27,23 @@
                                                 <div class="carousel-inner">
                                                     <div class="carousel-item active">
                                                         <img class="d-block w-100"
-                                                             src="{{ asset('frontend/images/thumb.png') }}"
-                                                             alt="First slide">
-                                                    </div>
-                                                    <div class="carousel-item">
-                                                        <img class="d-block w-100"
-                                                             src="{{ asset('frontend/images/thumb.png') }}"
-                                                             alt="First slide">
-                                                    </div>
-                                                    <div class="carousel-item">
-                                                        <img class="d-block w-100"
-                                                             src="{{ asset('frontend/images/thumb.png') }}"
+                                                             src="{{ asset(empty($item->thumbnail) ? '' : $item->thumbnail) }}"
                                                              alt="First slide">
                                                     </div>
                                                 </div>
                                                 <div class="carousel-indicators">
-                                                    <div class="item">
-                                                        <img src="{{ asset('frontend/images/thumb.png') }}"
-                                                             class="img-fluid" data-target="#carouselExampleIndicators"
-                                                             data-slide-to="0"/>
-                                                    </div>
-                                                    <div class="item">
-                                                        <img src="{{ asset('frontend/images/thumb.png') }}"
-                                                             class="img-fluid" data-target="#carouselExampleIndicators"
-                                                             data-slide-to="1"/>
-                                                    </div>
-                                                    <div class="item">
-                                                        <img src="{{ asset('frontend/images/thumb.png') }}"
-                                                             class="img-fluid" data-target="#carouselExampleIndicators"
-                                                             data-slide-to="2"/>
-                                                    </div>
+{{--                                                    {{ var_dump(json_decode($item->image_gallery)) }}--}}
+
+                                                    @if (!empty($item->image_gallery))
+                                                        @foreach (json_decode($item->image_gallery) as $key => $value)
+                                                            <div class="item">
+                                                                <img src="{!! asset($value) !!} "
+                                                                     class="img-fluid"
+                                                                     data-target="#carouselExampleIndicators"
+                                                                     data-slide-to="0"/>
+                                                            </div>
+                                                        @endforeach
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -79,11 +66,11 @@
                                             <div class="like-share">
                                                 <ul class="list-inline">
                                                     <li class="list-inline-item"><a href=""><img
-                                                                src="{{ asset('frontend/images/like.png') }}"
-                                                                class="img-fluid" alt=""></a></li>
+                                                                    src="{{ asset('frontend/images/like.png') }}"
+                                                                    class="img-fluid" alt=""></a></li>
                                                     <li class="list-inline-item"><a href=""><img
-                                                                src="{{ asset('frontend/images/like.png') }}"
-                                                                class="img-fluid" alt=""></a></li>
+                                                                    src="{{ asset('frontend/images/like.png') }}"
+                                                                    class="img-fluid" alt=""></a></li>
                                                 </ul>
                                             </div>
                                             <div class="btn-buy">
@@ -109,12 +96,13 @@
                                 <div class="title-info">THÔNG TIN SẢN PHẨM</div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p>{{ $item->detail }}</p>
+                                        <p>{!! empty($item->detail) == true ? '' : $item->detail !!}</p>
                                     </div>
                                 </div>
                                 <div class="cmt">
-                                    <img src="{{ asset('frontend/images/fb.png') }}" class="img-fluid" width="100%"
-                                         alt="">
+{{--                                    <img src="{{ asset('public/frontend/images/fb.png') }}" class="img-fluid" width="100%"--}}
+{{--                                         alt="">--}}
+                                    <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="" data-numposts="5"></div>
                                 </div>
                             </div>
                         @endforeach
@@ -132,10 +120,9 @@
                                         @foreach ($list_related as $item)
                                             <div class="swiper-slide">
                                                 <div class="item">
-                                                    <div class="avarta"><a href=""><img
-                                                                src="{{ asset('frontend/images/sp1.png') }}"
-                                                                class="img-fluid"
-                                                                alt=""></a></div>
+                                                    <div class="avarta">
+                                                        <a href=""><img src="{{ asset(empty($item->thumbnail) == true ? '' : $item->thumbnail) }}" class="img-fluid"
+                                                                    alt=""></a></div>
                                                     <div class="info">
                                                         <div class="vote">
                                                             <i class="fa fa-star"></i>
@@ -144,8 +131,11 @@
                                                             <i class="fa fa-star"></i>
                                                             <i class="fa fa-star"></i>
                                                         </div>
-                                                        <h3><a href="/product-detail/{{ $item->slug }}">{{ $item->name }}g</a></h3>
-                                                        <div class="price">{{ number_format($item->price_old, 0, '.', '.') }}<span>đ</span></div>
+                                                        <h3>
+                                                            <a href="/product-detail/{{ $item->slug }}">{{ $item->name }}
+                                                                g</a></h3>
+                                                        <div class="price">{{ number_format($item->price_old, 0, '.', '.') }}
+                                                            <span>đ</span></div>
                                                     </div>
                                                 </div>
                                             </div>

@@ -19,7 +19,7 @@
                         <div class="col-md-3 side-bar">
                             <div class="left">
                                 <div class="search-sidebar">
-                                    <form action="{{ route('product.search') }}" method="GET">
+                                    <form action="{{ route('product.search') }}" method="get">
                                         {{ csrf_field() }}
                                         <div class="title-search"><span>Tìm kiếm</span></div>
                                         <div class="item">
@@ -98,8 +98,8 @@
                                     <div class="list-prod">
                                         <div id="tab-1" class="tab-content current">
                                             <div class="row">
-                                                @if (!empty($products))
-                                                    @foreach ($products as $product)
+                                                @if (!empty($data_search))
+                                                    @foreach ($data_search as $product)
                                                         <div class="col-md-4 col-6 col-sm-6">
                                                             <div class="item">
                                                                 <div class="avarta"><a
@@ -134,23 +134,14 @@
                                                     @endforeach
                                                 @endif
                                                 <div class="col-md-12">
-                                                    <div class="pagination">
-                                                        {{ $products->links() }}
-{{--                                                        <ul class="list-inline">--}}
-{{--                                                            <li class="list-inline-item"><span>Trang</span></li>--}}
-{{--                                                            <li class="list-inline-item"><a href="#" class="active">1</a></li>--}}
-{{--                                                            <li class="list-inline-item"><a href="#" class="">2</a></li>--}}
-{{--                                                            <li class="list-inline-item"><a href="#" class="">3</a></li>--}}
-{{--                                                            <li class="list-inline-item"><a href="#" class="">4</a></li>--}}
-{{--                                                        </ul>--}}
-                                                    </div>
+{{--                                                    {{ $data_search->links() }}--}}
                                                 </div>
                                             </div>
                                         </div>
                                         <div id="tab-2" class="tab-content">
                                             <div class="row">
-                                                @if (!empty($products))
-                                                    @foreach ($products as $key => $value)
+                                                @if (!empty($data_search))
+                                                    @foreach ($data_search as $key => $value)
                                                         <div class="col-md-12">
                                                             <div class="item item-list">
                                                                 <div class="avarta"><a href="">
@@ -190,7 +181,7 @@
                                                 @endif
                                             </div>
                                             <div class="pagination">
-                                                {{ $products->links() }}
+{{--                                                {{ $data_search->links() }}--}}
                                             </div>
                                         </div>
                                     </div>

@@ -28,13 +28,24 @@
 									<p style="color: #2863db"><i>@</i>{{ isset($setting->email_info) ? $setting->email_info : '' }}</p>
 								</div>
 								<div class="maps">
-									<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.7748372818096!2d105.82069531492907!3d21.001660994078794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ade4ee3e84b5%3A0xc23f50a8e637de55!2sGCO+GROUP!5e0!3m2!1svi!2s!4v1564452374623!5m2!1svi!2s" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+									{!! empty($setting->code_maps) == true ? '' : $setting->code_maps !!}
 								</div>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="right">
 								<div class="form-sent">
+									@if(session('flash_message'))
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="alert alert-{!! session('flash_level') !!} alert-dismissible">
+													<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+													<h4><i class="icon fa fa-check"></i> Thông báo</h4>
+													{!! session('flash_message') !!}
+												</div>
+											</div>
+										</div>
+									@endif
 									<form action="{{ route('contact.store') }}" method='POST' autocomplete="off">
 										<div class="title-form">GỬI LIÊN HỆ</div>
 										@include('frontend.block.error')

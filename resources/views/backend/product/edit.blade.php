@@ -53,10 +53,10 @@
                     <select name="status" class="form-control">
                         <option value="#">Chọn trạng thái</option>
                         @if ($product->status == 1)
-                            <option value="1" selected>Đã đăng</option>
+                            <option value="1" selected>Kích hoạt</option>
                             <option value="0">Đóng</option>
                         @else
-                            <option value="1">Đã đăng</option>
+                            <option value="1">Kích hoạt</option>
                             <option value="0" selected>Đóng</option>
                         @endif
                     </select>
@@ -67,10 +67,10 @@
                     <select name="hot" class="form-control">
                         <option value="#">Chọn</option>
                         @if ($product->hot == 1)
-                            <option value="1" selected>Đã đăng</option>
+                            <option value="1" selected>Kích hoạt</option>
                             <option value="0">Đóng</option>
                         @else
-                            <option value="1">Đã đăng</option>
+                            <option value="1">Kích hoạt</option>
                             <option value="0" selected>Đóng</option>
                         @endif
                     </select>
@@ -86,7 +86,7 @@
                     </select>
                 </div>
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Thêm mới</button>
+                    <button type="submit" class="btn btn-primary">Cập nhật</button>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -98,6 +98,20 @@
                     @endif
                     <div class="file-loading">
                         <input id="inpImg" name="fImage" type="file">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Hình ảnh liên quan</label>
+                    @if (!empty($product->image_gallery))
+                        @foreach (json_decode($product->image_gallery) as $key => $value)
+                                <img src="{!! asset($value) !!} " class="img-thumbnail" width="50%" style="display: block; margin-bottom: 10px">
+                        @endforeach
+                    @endif
+{{--                    {{ var_dump(json_decode($product->image_gallery)) }}--}}
+                    <div class="file-loading">
+                        <input id="gallery" name="fImageGallery[]" type="file" multiple>
                     </div>
                 </div>
             </div>

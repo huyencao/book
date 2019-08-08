@@ -2,9 +2,8 @@
     <div class="header-menu">
         <div class="container">
             <div class="row">
-{{--                {!! dd($setting->site_logo) !!}--}}
                 <div class="col-md-2">
-                    <div class="logo"><a href="/"><img src="{!! isset($setting->site_logo) ? $setting->site_logo : '' !!}" class="img-fluid" alt=""></a>
+                    <div class="logo"><a href="/"><img src="{{ asset(isset($setting->site_logo) ? $setting->site_logo : '') }}" class="img-fluid" alt=""></a>
                     </div>
                 </div>
                 <div class="col-md-10">
@@ -14,7 +13,7 @@
                             <div class="phone"><a href="javascript:0"><i class="fa fa-phone"></i>{{ isset($setting->site_phone) ? $setting->site_phone : '' }}</a>
                             </div>
                             <div class="cart">
-                                        <a href="cart.html"><img src="{{ asset('frontend/images/cart.png') }}" class="img-fluid"
+                                        <a href="cart.html"><img src="{{ asset('public/frontend/images/cart.png') }}" class="img-fluid"
                                                 alt=""><span>1</span></a>
                             </div>
                         </div>
