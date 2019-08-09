@@ -22,6 +22,7 @@ class CartController extends Controller
         $product_id = $request->product_id;
         $product = Product::find($product_id);
         $price = empty($product->price_new) ? $product->price_old : $product->price_new;
+
         Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $price));
 
         Cart::content();
@@ -42,10 +43,4 @@ class CartController extends Controller
 
         return redirect()->back()->with('message', 'Delete cart');;
     }
-
-    public function district(Request $request){
-
-    }
-
-
 }

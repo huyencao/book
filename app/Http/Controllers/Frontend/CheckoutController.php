@@ -66,6 +66,5 @@ class CheckoutController extends Controller
         {
             echo '<option value="'. $value->districtid .'">'.$value->name.'</option>';
         }
-
     }
 }

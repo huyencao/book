@@ -31,7 +31,7 @@
                                             <select name="province" id="province">
                                                 <option value="">Tỉnh/TP</option>
                                                 @foreach ($province as $item)
-                                                    <option value="{!! !empty($item->provinceid) ? strval($item->provinceid) : '' !!}">{{ !empty($item->name) ? $item->name : ''}}</option>
+                                                    <option value="{!! !empty($item->provinceid) ? $item->provinceid : '' !!}">{{ !empty($item->name) ? $item->name : ''}}</option>
                                                 @endforeach
                                             </select>
                                         @endif

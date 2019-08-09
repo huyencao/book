@@ -18,8 +18,8 @@
                     <div class="title-info-cate">
                         <h1>Giỏ hàng của bạn</h1>
                     </div>
+                    @if(count($cart))
                     <div class="table-responsive">
-                        @if(count($cart))
                             <table class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
@@ -42,7 +42,7 @@
                                                                 src="{{ asset('public/frontend/images/sp2.png') }}"
                                                                 class="img-fluid" alt="" width="100%"></a></div>
                                                 <div class="info">
-                                                    <h3><a href="product-detail.html">{{$item->name}}</a></h3>
+                                                    <h3><a href="product-detail.html">{{ $item->name }}</a></h3>
                                                     <div class="vote">
                                                         <i class="fa fa-star"></i>
                                                         <i class="fa fa-star"></i>
@@ -80,9 +80,11 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                        @endif
                     </div>
-                    <div class="num-total">Tổng: {{Cart::total()}} <span>đ</span></div>
+                    <div class="num-total">Tổng: {{!empty(Cart::total()) == true ? Cart::total() : ''}} <span>đ</span></div>
+                    @else
+                        Không có sản phẩm nào trong giỏ hàng. Vui lòng quay lại <a href="{{ route('home') }}">trang chủ</a> để mua hàng
+                    @endif
                     <div class="update">
                         <div class="row">
                             <div class="col-md-6 col-sm-6 col-6">

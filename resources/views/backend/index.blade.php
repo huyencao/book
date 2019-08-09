@@ -129,12 +129,12 @@
                   </li>
                   <li class="{{ Request::segment(2) === 'contact' ? 'active' : null  }}">
                      <a href="{{ route('contact-admin.index') }}">
-                        <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Contact</span>
+                        <i class="fa fa-connectdevelop" aria-hidden="true"></i> <span>Contact</span>
                      </a>
                   </li>
                   <li class="treeview {{ Request::segment(2) === 'setting' ? 'active' : null }}">
                      <a href="#">
-                        <i class="fa fa-cog" aria-hidden="true"></i> <span>Manager order</span>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Manager order</span>
                         <span class="pull-right-container">
                      <i class="fa fa-angle-left pull-right"></i>
                      </span>
