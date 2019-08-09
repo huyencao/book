@@ -1,15 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\Admin;
 
-use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-//use App\Http\Requests\ContactRequest;
-use App\Models\Contact;
+use App\Repositories\ContactRepository;
 
 class ContactController extends Controller
 {
+    protected $contact;
+
+    public function __construct(ContactRepository $contact)
+    {
+        $this->contact = $contact;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +22,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('frontend.page.contact');
+        $contacts = $this->contact->listContact();
+
+        return view('backend.contact.list', compact('contacts'));
     }
 
     /**
@@ -38,25 +45,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = \Validator::make($request->all(), [
-            'name' => 'required|unique:contact,name|max:50|min:5',
-            'phone' => 'required|unique:contact,phone|max:12|min:10|regex:/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/',
-            'email' => 'required|unique:contact,email|email|max:35|min:5',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->route('contact.index')
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        Contact::create($request->all());
-
-        return redirect(route('contact.index'))->with([
-            'flash_level' => 'success',
-            'flash_message' => 'Đăng ký nhận thông tin thành công!'
-        ]);
-
+        //
     }
 
     /**
@@ -101,6 +90,11 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->contact->delete($id);
+
+        return back()->with([
+            'flash_level' => 'success',
+            'flash_message' => 'Xóa thành công !'
+        ]);
     }
 }

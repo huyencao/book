@@ -12,10 +12,15 @@ class Province extends Model
 
     protected $fillable = ['provinceid', 'name', 'type'];
 
-    protected  $incrementing = false;
+//    protected  $incrementing = false;
 
     public function district()
     {
         return $this->hasMany(District::class, 'provinceid', 'provinceid');
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'provinceid', 'provinceid');
     }
 }

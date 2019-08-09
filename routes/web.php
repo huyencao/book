@@ -34,13 +34,13 @@ Route::group(['namespace' => 'Admin'], function() {
         Route::resource('cate-product', 'CateProductController');
         Route::resource('product', 'ProductController');
         Route::resource('banner', 'BannerController');
+        Route::resource('contact-admin', 'ContactController');
     });
 });
 
 Route::namespace('Frontend')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('about', 'AboutController@index')->name('about');
-//    Route::get('contact', 'ContactController@index')->name('contact');
     Route::resource('contact', 'ContactController');
     Route::get('news', 'NewsController@index')->name('news');
     Route::get('news-detail/{slug}.html', 'NewsController@detail')->name('news.detail');
@@ -48,6 +48,15 @@ Route::namespace('Frontend')->group(function () {
     Route::get('product-detail/{slug}.html', 'ProductController@detail')->name('product.detail');
     Route::get('search', 'ProductController@search')->name('product.search');
     Route::post('comment', 'CommentController@store')->name('comment.store');
+//    Route::post('order-cart', 'CartController@cart')->name('order-cart');
+    Route::post('cart', 'CartController@cart')->name('cart');
+    Route::get('cart', 'CartController@index')->name('cart');
+    Route::get('update', 'CartController@update')->name('update');
+    Route::get('delete/{rowId}', 'CartController@delete')->name('delete');
+    Route::get('checkout', 'CheckoutController@index')->name('checkout');
+    Route::get('district', 'CheckoutController@district')->name('district');
+    Route::post('checkout/store', 'CheckoutController@store')->name('checkout.store');
+
 });
 
 Route::get('login',['as'=>'login', 'uses'=>'Auth\LoginController@getLogin']);

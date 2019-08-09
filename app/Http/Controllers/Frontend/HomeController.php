@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\ProductRepository;
 use App\Repositories\NewsRepository;
+use SEO;
 
 class HomeController extends Controller
 {
@@ -20,6 +21,13 @@ class HomeController extends Controller
 
     public function index()
     {
+        SEO::setTitle('Home');
+        SEO::setDescription('This is my page description');
+        SEO::opengraph()->setUrl('http://localhost/book/');
+        SEO::setCanonical('https://codecasts.com.br/lesson');
+        SEO::opengraph()->addProperty('type', 'articles');
+        SEO::twitter()->setSite('@LuizVinicius73');
+
         $products = $this->product_hot->listProductHot();
         $news = $this->news_hot->listNewsHot();
 

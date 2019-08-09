@@ -74,14 +74,24 @@
                                             </div>
                                             <div class="btn-buy">
                                                 <ul class="list-inline">
-                                                    <li class="list-inline-item">
-                                                        <input type="number" value="1">
-                                                    </li>
-                                                    <li class="list-inline-item">
-                                                        <div class="btn-buy-now">
-                                                            <a href="cart.html">mua ngay</a>
-                                                        </div>
-                                                    </li>
+                                                    <form method="POST" action="{{ route('cart') }}">
+                                                        <li class="list-inline-item">
+                                                            <input type="number" name="qty" value="1">
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <div class="btn-buy-now">
+                                                                <input type="hidden" name="product_id"
+                                                                         value="{{$item->id}}">
+                                                                <input type="hidden" name="_token"
+                                                                       value="{{ csrf_token() }}">
+                                                                <button type="submit"
+                                                                        class="btn btn-fefault add-to-cart">
+                                                                    <i class="fa fa-shopping-cart"></i>
+                                                                    Add to cart
+                                                                </button>
+                                                            </div>
+                                                        </li>
+                                                    </form>
                                                     <li class="list-inline-item">
                                                         <div class="read"><a href="">Đọc thử</a></div>
                                                     </li>
@@ -143,9 +153,12 @@
                                     <div id="comments">
                                         @foreach($list_comment as $comment)
                                             <div class="rv-comment" style="display: block; margin-bottom: 20px;">
-                                                <span class="star" style=" color: #ffc120;">{{ star($comment->star) }}</span>
-                                                <span class="name-comment" style="padding-bottom: 5px;">{{ $comment->name }}</span><br/>
-                                                <span class="content-comment" style="display:block; font-size: 14px; margin-top: 7px">{{ $comment->content }}</span>
+                                                <span class="star"
+                                                      style=" color: #ffc120;">{{ star($comment->star) }}</span>
+                                                <span class="name-comment"
+                                                      style="padding-bottom: 5px;">{{ $comment->name }}</span><br/>
+                                                <span class="content-comment"
+                                                      style="display:block; font-size: 14px; margin-top: 7px">{{ $comment->content }}</span>
                                             </div>
                                         @endforeach
                                     </div>

@@ -8,6 +8,12 @@ use App\Http\Requests\SettingRequest;
 use App\Repositories\SettingRepository;
 use Auth;
 use File;
+use SEOMeta;
+use OpenGraph;
+use Twitter;
+## or
+//use SEO;
+
 
 class SettingController extends Controller
 {

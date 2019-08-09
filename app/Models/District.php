@@ -12,11 +12,15 @@ class District extends Model
 
     protected $fillable = ['districtid', 'name', 'type', 'location', 'provinceid'];
 
-    protected  $incrementing = false;
+//    protected  $incrementing = false;
 
     public function province()
     {
         return $this->belongsTo(Province::class, 'provinceid', 'districtid');
     }
 
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'districtid', 'districtid');
+    }
 }

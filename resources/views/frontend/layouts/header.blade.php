@@ -13,8 +13,8 @@
                             <div class="phone"><a href="javascript:0"><i class="fa fa-phone"></i>{{ isset($setting->site_phone) ? $setting->site_phone : '' }}</a>
                             </div>
                             <div class="cart">
-                                        <a href="cart.html"><img src="{{ asset('public/frontend/images/cart.png') }}" class="img-fluid"
-                                                alt=""><span>1</span></a>
+                                        <a href="{{ route('cart') }}"><img src="{{ asset('public/frontend/images/cart.png') }}" class="img-fluid"
+                                                alt=""><span>{{ Cart::count() }}</span></a>
                             </div>
                         </div>
                     </div>

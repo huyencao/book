@@ -127,6 +127,11 @@
                         <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Banner</span>
                      </a>
                   </li>
+                  <li class="{{ Request::segment(2) === 'contact' ? 'active' : null  }}">
+                     <a href="{{ route('contact-admin.index') }}">
+                        <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Contact</span>
+                     </a>
+                  </li>
                   <li class="treeview {{ Request::segment(2) === 'setting' ? 'active' : null }}">
                      <a href="#">
                         <i class="fa fa-cog" aria-hidden="true"></i> <span>Manager order</span>

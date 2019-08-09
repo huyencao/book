@@ -15,7 +15,7 @@
 	<link href="{{ url('public/frontend') }}/magiczoomplus/magiczoomplus.css" rel="stylesheet" type="text/css" media="screen"/>
 	<link href="{{ url('public/frontend') }}/magiczoomplus/magiczoomscroll.css" rel="stylesheet" type="text/css" media="screen"/>
 	
-	<link rel="shortcut icon" type="image/png" href="{{ asset( 'uploads/config/logo/'.$general->site_favicon ) }}"/>
+{{--	<link rel="shortcut icon" type="image/png" href="{{ asset( 'uploads/config/logo/'.$general->site_favicon ) }}"/>--}}
 	<link rel="stylesheet" type="text/css" href="{{ url('public/frontend') }}/wow/css/libs/animate.css">
 	<link rel="stylesheet" type="text/css" href="{{ url('public/frontend') }}/mobile/css/jquery.mmenu.all.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">

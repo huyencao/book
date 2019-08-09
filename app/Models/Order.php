@@ -8,15 +8,15 @@ class Order extends Model
 {
     protected $table = 'orders';
 
-    protected $fillable =  ['fullname', 'phone', 'email', 'city', 'district', 'payment_method'];
-
-    public function city()
-    {
-        return $this->belongsTo(City::class);
-    }
+    protected $fillable =  ['fullname', 'phone', 'email', 'province', 'district', 'payment_method', 'order_cart'];
 
     public function district()
     {
-        return $this->belongsTo(District::class);
+        return $this->belongsTo(District::class, 'provinceid', 'id');
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'districtid', 'id');
     }
 }
