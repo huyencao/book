@@ -48,6 +48,10 @@
                     <input type="text" class="form-control" name="subjects">
                 </div>
                 <div class="form-group">
+                    <label>Tác giả</label>
+                    <input type="text" class="form-control" name="author">
+                </div>
+                <div class="form-group">
                     <label>Trạng thái</label>
                     <select name="status" class="form-control">
                         <option value="">Chọn trạng thái</option>

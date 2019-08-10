@@ -21,10 +21,10 @@ class CartController extends Controller
     {
         $product_id = $request->product_id;
         $product = Product::find($product_id);
+        $image = $product->thumbnail;
         $price = empty($product->price_new) ? $product->price_old : $product->price_new;
 
-        Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $price));
-
+        Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $price, 'options' => ['image' => $image]));
         Cart::content();
 
         return redirect()->route('cart');

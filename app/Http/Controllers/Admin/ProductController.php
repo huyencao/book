@@ -55,20 +55,18 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-//        dd($request->fImageGallery[]);
-        if (Auth::check()) {
+            if (Auth::check()) {
             $user = Auth::user();
         }
 
         if (!empty($request->file('fImage'))) {
             $file_name = $request->file('fImage')->getClientOriginalName();
-            $image = 'uploads/product/' . time() . '-' . $file_name;
-            $request->file('fImage')->move('uploads/product/', $image);
+            $images = 'uploads/product/' . time() . '-' . $file_name;
+            $request->file('fImage')->move('uploads/product/', $images);
         }
 
         if($request->hasfile('fImageGallery'))
         {
-
             foreach($request->file('fImageGallery') as $image)
             {
                 $name = $image->getClientOriginalName();
@@ -153,10 +151,12 @@ class ProductController extends Controller
             }
         }
 
+//        $image_gallery[] = $product->image_gallery;
 
-        if($request->hasfile('fImageGallery'))
+        if(!empty($request->file('fImageGallery')))
         {
-            $image_gallery = $product->image_gallery;
+            $image_gallery[] = $product->image_gallery;
+
             foreach($request->file('fImageGallery') as $image)
             {
                 $name = $image->getClientOriginalName();

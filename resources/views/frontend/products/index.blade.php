@@ -147,54 +147,57 @@
                                                     @endforeach
                                                 @endif
                                                 <div class="col-md-12">
-{{--                                                    <div class="pagination">--}}
+                                                    <div class="pagination">
                                                         {{ $products->links() }}
-{{--                                                    </div>--}}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="tab-2" class="tab-content">
-                                            <div class="row">
-                                                @if (!empty($products))
-                                                    @foreach ($products as $key => $value)
-                                                        <div class="col-md-12">
-                                                            <div class="item item-list">
-                                                                <div class="avarta"><a href="">
-                                                                        <img src="{{ asset( empty($value->thumbnail) ? '' : $value->thumbnail) }}"
-                                                                             class="img-fluid" alt=""></a>
+                                    </div>
+                                    <div id="tab-2" class="tab-content">
+                                        <div class="row">
+                                            @if (!empty($products))
+                                                @foreach ($products as $key => $value)
+                                                    <div class="col-md-12">
+                                                        <div class="item item-list">
+                                                            <div class="avarta"><a href="">
+                                                                    <img src="{{ asset( empty($value->thumbnail) ? '' : $value->thumbnail) }}"
+                                                                         class="img-fluid" alt=""></a>
+                                                            </div>
+                                                            <div class="info">
+                                                                <div class="vote">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
                                                                 </div>
-                                                                <div class="info">
-                                                                    <div class="vote">
-                                                                        <i class="fa fa-star"></i>
-                                                                        <i class="fa fa-star"></i>
-                                                                        <i class="fa fa-star"></i>
-                                                                        <i class="fa fa-star"></i>
-                                                                        <i class="fa fa-star"></i>
-                                                                    </div>
-                                                                    <h3>
-                                                                        <a href="/book/product-detail/{{ empty($value->slug) ? '' : $value->slug }}.html">{{ empty($value->name) ? '' : $value->name }}</a>
-                                                                    </h3>
-                                                                    <div class="price">
-                                                                        @if ($value->price_new == 0)
-                                                                            <p>{{ number_format($value->price_old, 0, '.', '.') }}
-                                                                                <span>đ</span></p>
-                                                                        @else
-                                                                            <p>{{ number_format($value->price_new, 0, '.', '.') }}
-                                                                                <span>đ</span></p>
-                                                                            <del>{{ number_format($value->price_old, 0, '.', '.') }}
-                                                                                <span>đ</span></del>
-                                                                        @endif
-                                                                    </div>
-                                                                    <div class="desc">
-                                                                        <p>{!! str_limit(empty($value->detail) ? '' : $value->detail, 60) !!}</p> ...
-                                                                    </div>
+                                                                <h3>
+                                                                    <a href="/book/product-detail/{{ empty($value->slug) ? '' : $value->slug }}.html">{{ empty($value->name) ? '' : $value->name }}</a>
+                                                                </h3>
+                                                                <div class="price">
+                                                                    @if ($value->price_new == 0)
+                                                                        <p>{{ number_format($value->price_old, 0, '.', '.') }}
+                                                                            <span>đ</span></p>
+                                                                    @else
+                                                                        <p>{{ number_format($value->price_new, 0, '.', '.') }}
+                                                                            <span>đ</span></p>
+                                                                        <del>{{ number_format($value->price_old, 0, '.', '.') }}
+                                                                            <span>đ</span></del>
+                                                                    @endif
+                                                                </div>
+                                                                <div class="desc">
+                                                                    <p>{!! str_limit(empty($value->detail) ? '' : $value->detail, 60) !!}</p>
+                                                                    ...
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    @endforeach
-                                                @endif
-                                            </div>
-                                            <div class="col-md-12">
+                                                    </div>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="pagination">
                                                 {{ $products->links() }}
                                             </div>
                                         </div>
@@ -204,6 +207,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
     </main>

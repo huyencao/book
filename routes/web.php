@@ -35,10 +35,12 @@ Route::group(['namespace' => 'Admin'], function() {
         Route::resource('product', 'ProductController');
         Route::resource('banner', 'BannerController');
         Route::resource('contact-admin', 'ContactController');
+        Route::resource('order', 'OrderController');
+
     });
 });
 
-Route::namespace('Frontend')->group(function () {
+Route::group(['namespace' => 'Frontend'], function() {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('about', 'AboutController@index')->name('about');
     Route::resource('contact', 'ContactController');

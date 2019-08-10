@@ -132,24 +132,14 @@
                         <i class="fa fa-connectdevelop" aria-hidden="true"></i> <span>Contact</span>
                      </a>
                   </li>
-                  <li class="treeview {{ Request::segment(2) === 'setting' ? 'active' : null }}">
-                     <a href="#">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Manager order</span>
-                        <span class="pull-right-container">
-                     <i class="fa fa-angle-left pull-right"></i>
-                     </span>
+                  <li class="{{ Request::segment(2) === 'order' ? 'active' : null  }}">
+                     <a href="{{ route('order.index') }}">
+                        <i class="fa fa-angle-left pull-right"></i> <span>Manager order</span>
                      </a>
-                     <ul class="treeview-menu">
-{{--                        <li class="{{ Request::segment(2) === 'cate-product' ? 'active' : null  }}">--}}
-{{--                           <a href="{{ route('cate-product.index') }}">--}}
-{{--                              <i class="fa fa-list-alt" aria-hidden="true"></i> <span>Cate product</span>--}}
-{{--                           </a>--}}
-{{--                        </li>--}}
-                     </ul>
                   </li>
                   <li class="treeview {{ Request::segment(2) === 'setting' ? 'active' : null }}">
                      <a href="#">
-                     <i class="fa fa-cog" aria-hidden="true"></i> <span>Cấu hình</span>
+                     <i class="fa fa-cog" aria-hidden="true"></i><span>Cấu hình</span>
                      <span class="pull-right-container">
                      <i class="fa fa-angle-left pull-right"></i>
                      </span>

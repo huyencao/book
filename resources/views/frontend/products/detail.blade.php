@@ -32,7 +32,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="carousel-indicators">
-                                                    {{--                                                    {{ var_dump(json_decode($item->image_gallery)) }}--}}
                                                     @if (!empty($item->image_gallery))
                                                         @foreach (json_decode($item->image_gallery) as $key => $value)
                                                             <div class="item">
@@ -56,9 +55,9 @@
                                                 <span>đ</span></del>
                                             <div class="info-book">
                                                 <ul>
-                                                    <li>Tác giả: <a href="javascript:0">{{ $item->author }}</a></li>
-                                                    <li>Nhà xuất bản: {{ $item->publishing_company }}</li>
-                                                    <li>Số trang: {{ $item->number_page }} trang</li>
+                                                    <li>Tác giả: <a href="javascript:0">{{ empty($item->author) ? '' : $item->author }}</a></li>
+                                                    <li>Nhà xuất bản: {{ empty($item->publishing_company) ? '' : $item->publishing_company }}</li>
+                                                    <li>Số trang: {{ empty( $item->number_page) ? '' : $item->number_page }} trang</li>
                                                     <li>Tình trạng: Còn hàng</li>
                                                 </ul>
                                             </div>

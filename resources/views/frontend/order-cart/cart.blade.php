@@ -39,7 +39,7 @@
                                         <td>
                                             <div class="item-prod">
                                                 <div class="avarta"><a href="product-detail.html"><img
-                                                                src="{{ asset('public/frontend/images/sp2.png') }}"
+                                                                src="{{ asset($item->options->image) }}"
                                                                 class="img-fluid" alt="" width="100%"></a></div>
                                                 <div class="info">
                                                     <h3><a href="product-detail.html">{{ $item->name }}</a></h3>
