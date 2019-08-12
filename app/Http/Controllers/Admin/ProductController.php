@@ -11,16 +11,22 @@ use App\Http\Requests\EditProductRequest;
 use Auth;
 use Hash;
 use File;
+use App\Repositories\ClassRoomRepository;
+use App\Repositories\SubjectReposiory;
 
 class ProductController extends Controller
 {
     protected $product;
     protected $cate_product;
+    protected $class_room;
+    protected $subject;
 
-    public function __construct(ProductRepository $product, CateProductRepository $cate_product)
+    public function __construct(ProductRepository $product, CateProductRepository $cate_product, ClassRoomRepository $class_room, SubjectReposiory $subject)
     {
         $this->product = $product;
         $this->cate_product = $cate_product;
+        $this->class_room = $class_room;
+        $this->subject = $subject;
     }
 
     /**
@@ -43,8 +49,10 @@ class ProductController extends Controller
     public function create()
     {
         $cate_product = $this->cate_product->listCateProduct();
+        $list_class = $this->class_room->activeClassRoom();
+        $list_subject = $this->subject->activeSubject();
 
-        return view('backend.product.add', compact('cate_product'));
+        return view('backend.product.add', compact('cate_product', 'list_class', 'list_subject'));
     }
 
     /**
@@ -89,7 +97,7 @@ class ProductController extends Controller
             [
                 'user_id' => $user->id,
                 'slug' => str_slug($request->name),
-                'thumbnail' => $image,
+                'thumbnail' => $images,
                 'price_new' => $price_new,
                 'image_gallery' => $filename
             ]
@@ -123,8 +131,10 @@ class ProductController extends Controller
     {
         $product = $this->product->findProduct($id);
         $cate_product = $this->cate_product->listCateProductOpen();
+        $list_class = $this->class_room->activeClassRoom();
+        $list_subject = $this->subject->activeSubject();
 
-        return view('backend.product.edit', compact('product', 'cate_product'));
+        return view('backend.product.edit', compact('product', 'cate_product', 'list_class', 'list_subject'));
     }
 
     /**
@@ -146,32 +156,47 @@ class ProductController extends Controller
             $file_name      = $request->file('fImage')->getClientOriginalName();
             $thumbnail    = 'uploads/product/'.time().'-'.$file_name;
             $request->file('fImage')->move('uploads/product/', $thumbnail);
+
             if(File::exists($image)){
                 File::delete($image);
             }
         }
 
-//        $image_gallery[] = $product->image_gallery;
-
         if(!empty($request->file('fImageGallery')))
+
         {
-            $image_gallery[] = $product->image_gallery;
+
+            $image_gallery = $product->image_gallery;
 
             foreach($request->file('fImageGallery') as $image)
-            {
-                $name = $image->getClientOriginalName();
-                $value = 'uploads/product/' . time() . '-' . $name;
 
-                $image->move('/uploads/product/', $value);
+            {
+
+                $name = $image->getClientOriginalName();
+
+                $value = 'book/uploads/product/' . time() . '-' . $name;
+
+
+
+                $image->move('book/uploads/product/', $value);
+
                 $data[] = $value;
+
             }
+
 
             if(File::exists($image_gallery)){
+
                 File::delete($image_gallery);
+
             }
+
         }
 
+
+
         $filename = json_encode($data);
+
 
         $sale = $product->sale;
         if ($request->sale == 0)
@@ -200,6 +225,7 @@ class ProductController extends Controller
             ]
         );
 
+//        dd($request->all());
         $this->product->update($id, $request->all());
 
         return redirect()->route('product.index')->with([

@@ -18,10 +18,17 @@ class ProductRepository extends EloquentRepository
         return $product;
     }
 
-    public function listProduct()
+    public function listProduct($request)
     {
-        $list_product = Product::where('status', 1)->paginate(config('app.paginate_product'));
-
+        if ($request == 'new') {
+            $list_product = Product::where('status', 1)->orderBy('id', 'DESC')->paginate(config('app.paginate_product'));
+        }else if ($request == 'name') {
+            $list_product = Product::where('status', 1)->orderBy('name', 'ASC')->paginate(config('app.paginate_product'));
+        }else if ($request == 'price'){
+            $list_product = Product::where('status', 1)->orderBy('price_old', 'ASC')->paginate(config('app.paginate_product'));
+        }else{
+            $list_product = Product::where('status', 1)->paginate(config('app.paginate_product'));
+        }
         return $list_product;
     }
 
@@ -59,13 +66,13 @@ class ProductRepository extends EloquentRepository
     }
 
     public function listClass(){
-        $data = Product::where('status', 1)->select('class')->get();
+        $data = Product::where('status', 1)->select('class')->distinct()->get();
 
         return $data;
     }
 
     public function listSubject(){
-        $data = Product::where('status', 1)->select('subjects')->get();
+        $data = Product::where('status', 1)->select('subjects')->distinct()->get();
 
         return $data;
     }

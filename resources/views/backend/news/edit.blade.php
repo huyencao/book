@@ -1,6 +1,6 @@
 @extends('backend.index')
 
-@section('title', 'Add News Book')
+@section('title', 'Cập nhật bài viết')
 
 @section('content')
     <div class="row">

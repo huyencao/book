@@ -53,7 +53,7 @@
                                                 </div>
                                             </div>
                                         @endif
-                                        <form action="{{ route('contact.store') }}" method='POST' autocomplete="off">
+                                        <form action="{{ route('lien-he.store') }}" method='POST' autocomplete="off">
                                             <div class="title-form">GỬI LIÊN HỆ</div>
                                             @include('frontend.block.error')
                                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">

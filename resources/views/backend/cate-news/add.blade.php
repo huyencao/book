@@ -1,6 +1,6 @@
 @extends('backend.index')
 
-@section('title', 'Add category news')
+@section('title', 'Thêm danh mục')
 
 @section('content')
     <div id="main-content-wp" class="add-cat-page">

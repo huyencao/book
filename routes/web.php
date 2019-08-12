@@ -36,18 +36,19 @@ Route::group(['namespace' => 'Admin'], function() {
         Route::resource('banner', 'BannerController');
         Route::resource('contact-admin', 'ContactController');
         Route::resource('order', 'OrderController');
-
+        Route::resource('class-room', 'ClassRoomController');
+        Route::resource('subject', 'SubjectController');
     });
 });
 
 Route::group(['namespace' => 'Frontend'], function() {
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('about', 'AboutController@index')->name('about');
-    Route::resource('contact', 'ContactController');
-    Route::get('news', 'NewsController@index')->name('news');
-    Route::get('news-detail/{slug}.html', 'NewsController@detail')->name('news.detail');
-    Route::get('product', 'ProductController@index')->name('home.product');
-    Route::get('product-detail/{slug}.html', 'ProductController@detail')->name('product.detail');
+    Route::get('gioi-thieu', 'AboutController@index')->name('about');
+    Route::resource('lien-he', 'ContactController');
+    Route::get('tin-tuc', 'NewsController@index')->name('news');
+    Route::get('tin-tuc-chi-tiet/{slug}.html', 'NewsController@detail')->name('news.detail');
+    Route::get('san-pham', 'ProductController@index')->name('home.product');
+    Route::get('san-pham-chi-tiet/{slug}.html', 'ProductController@detail')->name('product.detail');
     Route::get('search', 'ProductController@search')->name('product.search');
     Route::post('comment', 'CommentController@store')->name('comment.store');
 //    Route::post('order-cart', 'CartController@cart')->name('order-cart');

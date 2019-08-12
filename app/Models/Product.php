@@ -8,7 +8,7 @@ class Product extends Model
 {
     protected $table = 'products';
 
-    protected $fillable =  ['name', 'slug', 'price_old', 'cate_id', 'sale', 'price_new', 'publishing_company', 'number_page', 'total', 'status', 'detail', 'class', 'subjects', 'thumbnail', 'image_gallery', 'hot', 'user_id', 'author'];
+    protected $fillable =  ['name', 'slug', 'price_old', 'cate_id', 'sale', 'price_new', 'publishing_company', 'number_page', 'total', 'status', 'detail', 'thumbnail', 'image_gallery', 'hot', 'user_id', 'author', 'class_id', 'subject_id'];
 
     public function categoryProduct()
     {
@@ -20,6 +20,15 @@ class Product extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function classRoom()
+    {
+        return $this->belongsTo(ClassRoom::class, 'class_id', 'id');
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id', 'id');
+    }
     //search
     public function scopeName($query, $request)
     {
@@ -33,7 +42,7 @@ class Product extends Model
     public function scopeClass($query, $request)
     {
         if ($request->has('class')) {
-            $query->where('class', $request->class);
+            $query->where('class_id', $request->class);
         }
 
         return $query;
@@ -42,7 +51,7 @@ class Product extends Model
     public function scopeSubjects($query, $request)
     {
         if ($request->has('subjects')) {
-            $query->where('subjects', $request->subjects);
+            $query->where('subjects_id', $request->subjects);
         }
 
         return $query;

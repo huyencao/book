@@ -11,9 +11,9 @@ class CommentRepository extends EloquentRepository
         return \App\Models\Comment::class;
     }
 
-    public function listComment()
+    public function listComment($product_id)
     {
-        $comment = Comment::with('product')->limit(5)->get();
+        $comment = Comment::with('product')->where('product_id', $product_id)->limit(5)->get();
 
         return $comment;
     }

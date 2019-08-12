@@ -1,6 +1,6 @@
 @extends('backend.index')
 
-@section('title', 'List order')
+@section('title', 'Danh sách đơn hàng')
 
 @section('content')
     <div id="main-content-wp" class="list-post-page">

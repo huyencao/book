@@ -45,14 +45,15 @@ class ContactController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('contact.index')
+            return redirect()->route('lien-he.index')
                 ->withErrors($validator)
                 ->withInput();
         }
 
         Contact::create($request->all());
 
-        return redirect(route('contact.index'))->with([
+        Session::flash('flash_message', 'Send message successfully!');
+        return redirect(route('lien-he.index'))->with([
             'flash_level' => 'success',
             'flash_message' => 'Đăng ký nhận thông tin thành công!'
         ]);

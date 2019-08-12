@@ -1,6 +1,6 @@
 @extends('backend.index')
 
-@section('title', 'GCO-Book/News')
+@section('title', 'Danh sách bài viết')
 
 @section('content')
     <div id="main-content-wp" class="list-post-page">

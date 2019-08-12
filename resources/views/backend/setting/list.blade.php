@@ -3,6 +3,8 @@
 @section('controller','Cấu hình chung')
 
 {{--@section('action','Cập nhật')--}}
+@section('title', 'Thông tin chung')
+
 
 @section('content')
 

@@ -1,6 +1,6 @@
 @extends('backend.index')
 
-@section('title', 'Add News Book')
+@section('title', 'Cập nhật menu')
 
 @section('content')
     <div class="row">
@@ -53,7 +53,7 @@
                     </select>
                 </div>
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Thêm mới</button>
+                    <button type="submit" class="btn btn-primary">Cập nhật</button>
                 </div>
             </div>
         </form>

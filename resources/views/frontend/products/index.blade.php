@@ -26,21 +26,21 @@
                                             <input type="text" placeholder="Tên sách" class="form-control" name="name">
                                         </div>
                                         <div class="item">
-                                            <select name="class" id="" class="form-control">
-                                                <option value="#">Lớp</option>
+                                            <select name="class" class="form-control">
+                                                <option value="#">Lớp học</option>
                                                 @if (!empty($list_class))
-                                                    @foreach ($list_class as $key => $value)
-                                                        <option value="{{ $value->class }}">{{ $value->class }}</option>
+                                                    @foreach ($list_class as $key => $class_room)
+                                                        <option value="{{ !empty($class_room->id) ? $class_room->id : '' }}">{{ !empty($class_room->name) ? $class_room->name : '' }}</option>
                                                     @endforeach
                                                 @endif
                                             </select>
                                         </div>
                                         <div class="item">
-                                            <select name="subjects" id="" class="form-control">
+                                            <select name="subjects" class="form-control">
                                                 <option value="#">Môn học</option>
                                                 @if (!empty($list_subjects))
-                                                    @foreach ($list_subjects as $key => $value)
-                                                        <option value="{{ $value->subjects }}">{{ $value->subjects }}</option>
+                                                    @foreach ($list_subjects as $key => $subject)
+                                                        <option value="{{ !empty($subject->id) ? $subject->id : '' }}">{{ !empty($subject->name) ? $subject->name : '' }}</option>
                                                     @endforeach
                                                 @endif
                                             </select>
@@ -95,10 +95,10 @@
                                                                                     class="fa fa-caret-down"></i></span></a>
                                                                 </dt>
                                                                 <dd>
-                                                                    <ul>
-                                                                        <li><a>Sách mới</a></li>
-                                                                        <li><a>Tên sách A-Z</a></li>
-                                                                        <li><a>Giá từ cao - thấp</a></li>
+                                                                    <ul id="select-order">
+                                                                        <li><a data-id = "1">Sách mới</a></li>
+                                                                        <li><a data-id = "2">Tên sách A-Z</a></li>
+                                                                        <li><a data-id = "3">Giá từ cao - thấp</a></li>
                                                                     </ul>
                                                                 </dd>
                                                             </dl>
@@ -116,7 +116,7 @@
                                                         <div class="col-md-4 col-6 col-sm-6">
                                                             <div class="item">
                                                                 <div class="avarta"><a
-                                                                            href="/book/product-detail/{{ $product->slug }}.html">
+                                                                            href="/book/san-pham-chi-tiet/{{ $product->slug }}.html">
                                                                         <img src="{{ asset( empty($product->thumbnail) ? '' : $product->thumbnail) }}"
                                                                              class="img-fluid" alt=""></a></div>
                                                                 <div class="info">
@@ -146,11 +146,9 @@
                                                         </div>
                                                     @endforeach
                                                 @endif
-                                                <div class="col-md-12">
-                                                    <div class="pagination">
-                                                        {{ $products->links() }}
+                                                    <div class="col-md-12">
+                                                    {{ $products->links() }}
                                                     </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -173,7 +171,7 @@
                                                                     <i class="fa fa-star"></i>
                                                                 </div>
                                                                 <h3>
-                                                                    <a href="/book/product-detail/{{ empty($value->slug) ? '' : $value->slug }}.html">{{ empty($value->name) ? '' : $value->name }}</a>
+                                                                    <a href="/book/san-pham-chi-tiet/{{ empty($value->slug) ? '' : $value->slug }}.html">{{ empty($value->name) ? '' : $value->name }}</a>
                                                                 </h3>
                                                                 <div class="price">
                                                                     @if ($value->price_new == 0)
@@ -196,11 +194,7 @@
                                                 @endforeach
                                             @endif
                                         </div>
-                                        <div class="col-md-12">
-                                            <div class="pagination">
-                                                {{ $products->links() }}
-                                            </div>
-                                        </div>
+                                        {{ $products->links() }}
                                     </div>
                                 </div>
                             </div>
@@ -224,7 +218,19 @@
 
                 $(this).addClass('current');
                 $("#" + tab_id).addClass('current');
-            })
+            });
+            $('#select-order li a').click(function () {
+                $type = $(this).attr("data-id");
+                $link = '{{ route('home.product') }}';
+                if($type == 1){
+                    $link = $link+'?order=new';
+                }else if ($type == 2){
+                    $link = $link+'?order=name';
+                }else{
+                    $link = $link+'?order=price';
+                }
+                window.location.href = $link;
+            });
         })
     </script>
 @endpush

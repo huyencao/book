@@ -45,7 +45,7 @@
                             @foreach ($products as $product)
                                 <div class="col-md-3 col-6 col-sm-6">
                                     <div class="item">
-                                        <div class="avarta"><a href="/book/product-detail/{{ $product->slug }}.html">
+                                        <div class="avarta"><a href="/book/san-pham-chi-tiet/{{ $product->slug }}.html">
                                                 <img src="{{ asset(!empty($product->thumbnail) ? $product->thumbnail : '') }}" class="img-fluid" alt=""></a></div>
                                         <div class="info">
                                             <div class="vote">
@@ -56,7 +56,7 @@
                                                 <i class="fa fa-star-o"></i>
                                             </div>
                                             <h3>
-                                                <a href="/book/product-detail/{{ empty($product->slug) == true ? '' : $product->slug }}.html">{{ empty($product->name) == true ? '' : $product->name }}</a>
+                                                <a href="/book/san-pham-chi-tiet/{{ empty($product->slug) == true ? '' : $product->slug }}.html">{{ empty($product->name) == true ? '' : $product->name }}</a>
                                             </h3>
                                             <div class="price">{{ number_format($product->price_old, 0, '.', '.') }}
                                                 <span>đ</span></div>
@@ -78,13 +78,13 @@
                             @foreach ($news as $item)
                                 <li>
                                     <div class="item">
-                                        <div class="avarta"><a href="/book/news-detail/{{ empty($item->slug) ? '' : $item->slug }}.html">
+                                        <div class="avarta"><a href="/book/tin-tuc-chi-tiet/{{ empty($item->slug) ? '' : $item->slug }}.html">
                                                 <img src="{{ asset(!empty($item->thumbnail) ? $item->thumbnail : '') }}"
                                                         class="img-fluid" alt=""></a></div>
                                         <div class="info">
                                             <div class="date">
                                                 <span>{{ date('d-m-Y', strtotime($item->updated_at)) }}</span></div>
-                                            <h3><a href="/book/news-detail/{{ empty($item->slug) ? '' : $item->slug }}.html">{{ empty($item->title) ? '' : $item->title }}</a></h3>
+                                            <h3><a href="/book/tin-tuc-chi-tiet/{{ empty($item->slug) ? '' : $item->slug }}.html">{{ empty($item->title) ? '' : $item->title }}</a></h3>
                                         </div>
                                     </div>
                                 </li>

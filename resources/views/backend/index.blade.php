@@ -84,7 +84,7 @@
                   </li>
                   <li class="treeview {{ Request::segment(2) === 'setting' ? 'active' : null }}">
                      <a href="#">
-                        <i class="fa fa-cog" aria-hidden="true"></i> <span>Manager news</span>
+                        <i class="fa fa-cog" aria-hidden="true"></i> <span>Quản lý tin tức</span>
                         <span class="pull-right-container">
                      <i class="fa fa-angle-left pull-right"></i>
                      </span>
@@ -92,19 +92,19 @@
                      <ul class="treeview-menu">
                         <li class="{{ Request::segment(2) === 'cate-news' ? 'active' : null  }}">
                            <a href="{{ route('cate-news.index') }}">
-                              <i class="fa fa-th-list" aria-hidden="true"></i> <span>Category news</span>
+                              <i class="fa fa-th-list" aria-hidden="true"></i> <span>Danh mục tin tức</span>
                            </a>
                         </li>
                         <li class="{{ Request::segment(2) === 'news' ? 'active' : null  }}">
                            <a href="{{ route('news.index') }}">
-                              <i class="fa fa-newspaper-o" aria-hidden="true"></i> <span>News</span>
+                              <i class="fa fa-newspaper-o" aria-hidden="true"></i> <span>Danh sách tin tức</span>
                            </a>
                         </li>
                      </ul>
                   </li>
                   <li class="treeview {{ Request::segment(2) === 'setting' ? 'active' : null }}">
                      <a href="#">
-                        <i class="fa fa-cog" aria-hidden="true"></i> <span>Manager product</span>
+                     <i class="fa fa-cog" aria-hidden="true"></i> <span>Quản lý sản phẩm</span>
                         <span class="pull-right-container">
                      <i class="fa fa-angle-left pull-right"></i>
                      </span>
@@ -112,29 +112,39 @@
                      <ul class="treeview-menu">
                         <li class="{{ Request::segment(2) === 'cate-product' ? 'active' : null  }}">
                            <a href="{{ route('cate-product.index') }}">
-                              <i class="fa fa-list-alt" aria-hidden="true"></i> <span>Cate product</span>
+                              <i class="fa fa-list-alt" aria-hidden="true"></i> <span>Danh mục sản phẩm</span>
                            </a>
                         </li>
                         <li class="{{ Request::segment(2) === 'product' ? 'active' : null  }}">
                            <a href="{{ route('product.index') }}">
-                              <i class="fa fa-product-hunt" aria-hidden="true"></i> <span>Product</span>
+                              <i class="fa fa-product-hunt" aria-hidden="true"></i> <span>Danh sách sản phẩm</span>
+                           </a>
+                        </li>
+                        <li class="{{ Request::segment(2) === 'class-room' ? 'active' : null  }}">
+                           <a href="{{ route('class-room.index') }}">
+                              <i class="fa fa-graduation-cap" aria-hidden="true"></i> <span>Danh sách lớp học</span>
+                           </a>
+                        </li>
+                        <li class="{{ Request::segment(2) === 'subject' ? 'active' : null  }}">
+                           <a href="{{ route('subject.index') }}">
+                              <i class="fa fa-graduation-cap" aria-hidden="true"></i> <span>Danh sách môn học</span>
                            </a>
                         </li>
                      </ul>
                   </li>
                   <li class="{{ Request::segment(2) === 'banner' ? 'active' : null  }}">
                      <a href="{{ route('banner.index') }}">
-                        <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Banner</span>
+                        <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Danh sách banner</span>
                      </a>
                   </li>
                   <li class="{{ Request::segment(2) === 'contact' ? 'active' : null  }}">
                      <a href="{{ route('contact-admin.index') }}">
-                        <i class="fa fa-connectdevelop" aria-hidden="true"></i> <span>Contact</span>
+                        <i class="fa fa-connectdevelop" aria-hidden="true"></i> <span>Liên hệ</span>
                      </a>
                   </li>
                   <li class="{{ Request::segment(2) === 'order' ? 'active' : null  }}">
                      <a href="{{ route('order.index') }}">
-                        <i class="fa fa-angle-left pull-right"></i> <span>Manager order</span>
+                        <i class="fa fa-angle-left pull-right"></i> <span>Quản lý order</span>
                      </a>
                   </li>
                   <li class="treeview {{ Request::segment(2) === 'setting' ? 'active' : null }}">
@@ -161,7 +171,7 @@
                   <small>@yield('action')</small>
                </h1>
                <ol class="breadcrumb">
-                  <li><a href="{!! url('backend') !!}"><i class="fa fa-dashboard"></i> Home</a></li>
+                  <li><a href="{!! url('backend') !!}"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
                   <li><a href="@yield('controller_route')">@yield('controller')</a></li>
                   <li class="active">@yield('action')</li>
                </ol>

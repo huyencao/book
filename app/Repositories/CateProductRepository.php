@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 
+use App\Models\ClassRoom;
 use App\Repositories\EloquentRepository;
 use App\Models\CategoryProduct;
 
@@ -23,6 +24,7 @@ class CateProductRepository extends EloquentRepository
 
         return $data;
     }
+
     public function listCateParent()
     {
         $data = CategoryProduct::where('parent_id', 0)->get();

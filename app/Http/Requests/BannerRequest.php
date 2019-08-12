@@ -33,7 +33,7 @@ class BannerRequest extends FormRequest
     {
         return [
             'name.required' => 'Bạn chưa nhập tên banner!',
-            'name.unique' => 'Tên danh mục đã tồn tại!',
+            'name.unique' => 'Tên banner đã tồn tại!',
             'name.max' => 'Tên không đúng định dạng',
             'status.required' => 'Bạn chưa chọn trạng thái banner'
         ];

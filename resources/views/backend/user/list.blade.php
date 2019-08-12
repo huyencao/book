@@ -4,6 +4,8 @@
 
 @section('action','Danh sách')
 
+@section('title', 'Danh sách tài khoản quản trị')
+
 @section('content')
     <div class="btnAdd">
         <a href="{{ route('user.create') }}">

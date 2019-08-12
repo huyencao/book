@@ -8,7 +8,7 @@
                     <ul class="list-inline">
                         <li class="list-inline-item"><a href="index.html">Trang chủ</a></li>
                         <li class="list-inline-item"><a>Sản phẩm</a></li>
-                        <li class="list-inline-item"><span>Digital Marketing</span></li>
+                        <li class="list-inline-item"><span>{{$data[0]->name}}</span></li>
                     </ul>
                 </div>
             </div>
@@ -55,9 +55,15 @@
                                                 <span>đ</span></del>
                                             <div class="info-book">
                                                 <ul>
-                                                    <li>Tác giả: <a href="javascript:0">{{ empty($item->author) ? '' : $item->author }}</a></li>
-                                                    <li>Nhà xuất bản: {{ empty($item->publishing_company) ? '' : $item->publishing_company }}</li>
-                                                    <li>Số trang: {{ empty( $item->number_page) ? '' : $item->number_page }} trang</li>
+                                                    <li>Tác giả: <a
+                                                                href="javascript:0">{{ empty($item->author) ? '' : $item->author }}</a>
+                                                    </li>
+                                                    <li>Nhà xuất
+                                                        bản: {{ empty($item->publishing_company) ? '' : $item->publishing_company }}</li>
+                                                    <li>Số
+                                                        trang: {{ empty( $item->number_page) ? '' : $item->number_page }}
+                                                        trang
+                                                    </li>
                                                     <li>Tình trạng: Còn hàng</li>
                                                 </ul>
                                             </div>
@@ -80,7 +86,7 @@
                                                         <li class="list-inline-item">
                                                             <div class="btn-buy-now">
                                                                 <input type="hidden" name="product_id"
-                                                                         value="{{$item->id}}">
+                                                                       value="{{$item->id}}">
                                                                 <input type="hidden" name="_token"
                                                                        value="{{ csrf_token() }}">
                                                                 <button type="submit"
@@ -90,10 +96,10 @@
                                                                 </button>
                                                             </div>
                                                         </li>
+                                                        <li class="list-inline-item">
+                                                            <div class="read tab1"><a href="">Đọc thử</a></div>
+                                                        </li>
                                                     </form>
-                                                    <li class="list-inline-item">
-                                                        <div class="read"><a href="">Đọc thử</a></div>
-                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -116,7 +122,6 @@
                                     </div>
 
                                     @include('frontend.block.error')
-
                                     <div class="write-comment" id="writeComment" style="display: none">
                                         <form action="{{ route('comment.store') }}" method="POST" autocomplete="off">
                                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
@@ -150,16 +155,20 @@
                                         </form>
                                     </div>
                                     <div id="comments">
-                                        @foreach($list_comment as $comment)
-                                            <div class="rv-comment" style="display: block; margin-bottom: 20px;">
+                                        @if (empty($list_comment))
+                                            <span>Không có đánh giá nào về sản phẩm này!</span>
+                                        @else
+                                            @foreach($list_comment as $comment)
+                                                <div class="rv-comment" style="display: block; margin-bottom: 20px;">
                                                 <span class="star"
                                                       style=" color: #ffc120;">{{ star($comment->star) }}</span>
-                                                <span class="name-comment"
-                                                      style="padding-bottom: 5px;">{{ $comment->name }}</span><br/>
-                                                <span class="content-comment"
-                                                      style="display:block; font-size: 14px; margin-top: 7px">{{ $comment->content }}</span>
-                                            </div>
-                                        @endforeach
+                                                    <span class="name-comment"
+                                                          style="padding-bottom: 5px;">{{ $comment->name }}</span><br/>
+                                                    <span class="content-comment"
+                                                          style="display:block; font-size: 14px; margin-top: 7px">{{ $comment->content }}</span>
+                                                </div>
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -214,3 +223,19 @@
         </section>
     </main>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+
+            $('ul.tabs li').click(function () {
+                var tab_id = $(this).attr('data-tab');
+
+                $('ul.tabs li').removeClass('current');
+                $('.tab-content').removeClass('current');
+
+                $(this).addClass('current');
+                $("#" + tab_id).addClass('current');
+            });
+        })
+    </script>
+@endpush

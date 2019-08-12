@@ -1,6 +1,6 @@
 @extends('backend.index')
 
-@section('title', 'Edit product book')
+@section('title', 'Chỉnh sửa sản phẩm')
 
 @section('content')
     <div class="row">
@@ -41,12 +41,26 @@
                     <textarea id="content" cols="30" rows="10" name="detail">{{ empty($product->detail) == true ? '' : $product->detail }}</textarea>
                 </div>
                 <div class="form-group">
-                    <label>Lớp</label>
-                    <input type="text" class="form-control" name="class" value="{{ empty($product->class) == true ? '' : $product->class }}">
+                    <label>Lớp học</label>
+                    <select name="class_id" class="form-control">
+                        <option value="">Chọn</option>
+                        @if (!empty($list_class))
+                            @foreach ($list_class as $class_room)
+                                <option value="{{ !empty($class_room->id) ? $class_room->id : '' }}" @if ($product->class_id == $class_room->id)) selected @endif>{{ !empty($class_room->name) ? $class_room->name : '' }}</option>
+                            @endforeach
+                        @endif
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Môn học</label>
-                    <input type="text" class="form-control" name="subjects"  value="{{ empty($product->subjects) == true ? '' : $product->subjects }}">
+                    <select name="hot" class="form-control">
+                        <option value="">Chọn</option>
+                        @if (!empty($list_subject))
+                            @foreach ($list_subject as $subject)
+                                <option value="{{ !empty($subject->id) ? $subject->id : '' }}" @if ($product->subject_id == $subject->id)) selected @endif>{{ !empty($subject->name) ? $subject->name : '' }}</option>
+                            @endforeach
+                        @endif
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Trạng thái</label>

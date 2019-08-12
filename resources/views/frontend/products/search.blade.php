@@ -29,8 +29,8 @@
                                             <select name="class" id="" class="form-control">
                                                 <option value="#">Lớp</option>
                                                 @if (!empty($list_class))
-                                                    @foreach ($list_class as $key => $value)
-                                                        <option value="{{ $value->class }}">{{ $value->class }}</option>
+                                                    @foreach ($list_class as $key => $class_room)
+                                                        <option value="{{ !empty($class_room->id) ? $class_room->id : '' }}">{{ !empty($class_room->name) ? $class_room->name : '' }}</option>
                                                     @endforeach
                                                 @endif
                                             </select>
@@ -39,8 +39,8 @@
                                             <select name="subjects" id="" class="form-control">
                                                 <option value="#">Môn học</option>
                                                 @if (!empty($list_subjects))
-                                                    @foreach ($list_subjects as $key => $value)
-                                                        <option value="{{ empty($value->subjects) ? '' : $value->subjects }}">{{ empty($value->subjects) ? '' : $value->subjects }}</option>
+                                                    @foreach ($list_subjects as $key => $subject)
+                                                        <option value="{{ !empty($subject->id) ? $subject->id : '' }}">{{ !empty($subject->name) ? $subject->name : '' }}</option>
                                                     @endforeach
                                                 @endif
                                             </select>

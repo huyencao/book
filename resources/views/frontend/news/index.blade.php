@@ -24,14 +24,14 @@
                                 @foreach ($list_news as $news)
                                     <li>
                                         <div class="item">
-                                            <div class="avarta"><a href="/book/news-detail/{{ empty($news->slug ) == true ? '' : $news->slug }}.html"><img
+                                            <div class="avarta"><a href="/book/tin-tuc-chi-tiet/{{ empty($news->slug ) == true ? '' : $news->slug }}.html"><img
                                                         src="{{ asset(empty($news->thumbnail ) == true ? '' : $news->thumbnail) }}"
                                                         class="img-fluid"
                                                         alt=""></a></div>
                                             <div class="info">
                                                 <div class="date">
                                                     <span>{{ date('d-m-Y', strtotime($news->updated_at)) }}</span></div>
-                                                <h3><a href="/book/news-detail/{{ empty($news->slug ) == true ? '' : $news->slug }}.html">{{ empty($news->title ) == true ? '' : $news->title }}</a></h3>
+                                                <h3><a href="/book/tin-tuc-chi-tiet/{{ empty($news->slug ) == true ? '' : $news->slug }}.html">{{ empty($news->title ) == true ? '' : $news->title }}</a></h3>
                                             </div>
                                         </div>
                                     </li>

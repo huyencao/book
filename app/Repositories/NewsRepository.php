@@ -35,7 +35,7 @@ class NewsRepository extends EloquentRepository
 
     public function detailNews($slug)
     {
-        $data = News::where('slug', $slug)->get();
+        $data = News::where('slug', $slug)->distinct()->get();
 
         return $data;
     }

@@ -1,6 +1,8 @@
 @extends('backend.index')
 @section('controller','Quản lý tài khoản')
 @section('controller_route', '')
+@section('title', 'Cập nhật tài khoản')
+
 @section('action','Thêm')
 @section('content')
     <div class="row">

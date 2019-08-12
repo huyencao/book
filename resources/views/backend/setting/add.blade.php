@@ -2,7 +2,7 @@
 
 @section('controller','Cấu hình chung')
 
-@section('title', 'Edit product book')
+@section('title', 'Cài đặt')
 
 @section('content')
 

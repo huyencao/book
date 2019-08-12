@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Repositories\CheckoutRepository;
 use App\Http\Requests\CheckoutRequest;
 use Cart;
+use Mail;
+use App\Models\Product;
 
 class CheckoutController extends Controller
 {
@@ -49,6 +51,11 @@ class CheckoutController extends Controller
             ]
         );
 
+
+        Mail::send('sendmail', array('name' => $request->fullname, 'email' => $request->email, 'phone' => $request->phone), function ($message) {
+            $message->to('caohuyeenf1997@gmail.com', 'GCO Book')->subject('Visitor Feedback!');
+        });
+
         Order::create($request->all());
 
         Cart::destroy();
@@ -62,9 +69,8 @@ class CheckoutController extends Controller
     public function district(Request $request)
     {
         $district = $this->checkout->listDistrict($request->province_id);
-        foreach ($district as $value)
-        {
-            echo '<option value="'. $value->districtid .'">'.$value->name.'</option>';
+        foreach ($district as $value) {
+            echo '<option value="' . $value->districtid . '">' . $value->name . '</option>';
         }
     }
 }

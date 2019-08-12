@@ -1,6 +1,6 @@
 @extends('backend.index')
 
-@section('title', 'Add product book')
+@section('title', 'Thêm sản phẩm')
 
 @section('content')
     <div class="row">
@@ -40,14 +40,6 @@
                     <textarea id="content" cols="30" rows="10" name="detail"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Lớp</label>
-                    <input type="text" class="form-control" name="class">
-                </div>
-                <div class="form-group">
-                    <label>Môn học</label>
-                    <input type="text" class="form-control" name="subjects">
-                </div>
-                <div class="form-group">
                     <label>Tác giả</label>
                     <input type="text" class="form-control" name="author">
                 </div>
@@ -71,10 +63,32 @@
                     <label>Danh mục</label>
                     <select name="cate_id" class="form-control">
                         <option value="">Chọn danh mục</option>
-{{--                        @foreach($cate_product as $item)--}}
-{{--                            <option value="{{ $item->id }}">{{ $item->title }}</option>--}}
-{{--                        @endforeach--}}
+                        {{--                        @foreach($cate_product as $item)--}}
+                        {{--                            <option value="{{ $item->id }}">{{ $item->title }}</option>--}}
+                        {{--                        @endforeach--}}
                         {!! showCategories($cate_product) !!}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Lớp học</label>
+                    <select name="class_id" class="form-control">
+                        <option value="">Chọn</option>
+                        @if (!empty($list_class))
+                            @foreach ($list_class as $class_room)
+                                <option value="{{ !empty($class_room->id) ? $class_room->id : '' }}">{{ !empty($class_room->name) ? $class_room->name : '' }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Môn học</label>
+                    <select name="hot" class="form-control">
+                        <option value="">Chọn</option>
+                        @if (!empty($list_subject))
+                            @foreach ($list_subject as $subject)
+                                <option value="{{ !empty($subject->id) ? $subject->id : '' }}">{{ !empty($subject->name) ? $subject->name : '' }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
                 <div class="box-footer">
@@ -93,7 +107,7 @@
                 <div class="form-group">
                     <label>Hình ảnh liên quan</label>
                     <div class="file-loading">
-                            <input id="gallery" name="fImageGallery[]" type="file" multiple>
+                        <input id="gallery" name="fImageGallery[]" type="file" multiple>
                     </div>
                 </div>
             </div>
